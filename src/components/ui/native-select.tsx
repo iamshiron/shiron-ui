@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 
 import { cn } from "@shiron/ui/lib/utils";
 import { HugeiconsIcon } from "@hugeicons/react";
