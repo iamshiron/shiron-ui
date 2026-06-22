@@ -1,0 +1,25 @@
+{
+    "$schema": "https://ui.shadcn.com/schema.json",
+    "style": "radix-mira",
+    "rsc": false,
+    "tsx": true,
+    "tailwind": {
+        "config": "",
+        "css": "src/styles/globals.css",
+        "baseColor": "mauve",
+        "cssVariables": true,
+        "prefix": ""
+    },
+    "iconLibrary": "hugeicons",
+    "rtl": false,
+    "aliases": {
+        "components": "@shiron/ui/components",
+        "utils": "@shiron/ui/lib/utils",
+        "ui": "@shiron/ui/components/ui",
+        "lib": "@shiron/ui/lib",
+        "hooks": "@shiron/ui/hooks"
+    },
+    "menuColor": "default-translucent",
+    "menuAccent": "subtle",
+    "registries": {}
+}
