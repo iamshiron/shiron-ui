@@ -271,7 +271,7 @@
 	--popover-foreground: #e6e8ee;
 	--primary: #c3ccdd;
 	--primary-foreground: #0a0a0c;
-	--secondary: #18181a;
+	--secondary: #191919;
 	--secondary-foreground: #e6e8ee;
 	--muted: #0f0f10;
 	--muted-foreground: #969aa6;
@@ -325,19 +325,19 @@
 
 /* Sapphire — dark, blue */
 [data-theme="sapphire"] {
-	--background: #0b0d10;
+	--background: #0c0d0f;
 	--foreground: #dce6f5;
-	--card: #131519;
+	--card: #141518;
 	--card-foreground: #dce6f5;
-	--popover: #171a1f;
+	--popover: #191a1d;
 	--popover-foreground: #dce6f5;
 	--primary: #6ea8f2;
 	--primary-foreground: #0a1020;
-	--secondary: #202429;
+	--secondary: #222427;
 	--secondary-foreground: #dce6f5;
-	--muted: #171a1f;
+	--muted: #191a1d;
 	--muted-foreground: #93a4be;
-	--accent: #272b33;
+	--accent: #2a2c30;
 	--accent-foreground: #dce6f5;
 	--destructive: #e06e93;
 	--destructive-foreground: #0a1020;
@@ -355,17 +355,17 @@
 	--chart-4: #4fcfa4;
 	--chart-5: #e0b06b;
 
-	--sidebar: #0f1113;
+	--sidebar: #101112;
 	--sidebar-foreground: #dce6f5;
 	--sidebar-primary: #6ea8f2;
 	--sidebar-primary-foreground: #0a1020;
-	--sidebar-accent: #272b33;
+	--sidebar-accent: #2a2c30;
 	--sidebar-accent-foreground: #dce6f5;
 	--sidebar-border: rgba(255, 255, 255, 0.07);
 	--sidebar-ring: #6ea8f2;
 
 	/* Honami custom */
-	--honami-bg-2: #0f1113;
+	--honami-bg-2: #101112;
 	--honami-ink-dim: #93a4be;
 	--honami-mute: #5f6f8c;
 	--honami-accent: #6ea8f2;
@@ -376,7 +376,7 @@
 	--honami-accent-line: rgba(110, 168, 242, 0.3);
 	--honami-elev: rgba(255, 255, 255, 0.045);
 	--honami-elev-2: rgba(255, 255, 255, 0.08);
-	--honami-glass: rgba(23, 26, 31, 0.68);
+	--honami-glass: rgba(25, 26, 29, 0.68);
 	--honami-glass-brd: rgba(255, 255, 255, 0.08);
 	--honami-blur: blur(26px) saturate(1.1);
 	--honami-add: #4fcfa4;
@@ -387,19 +387,19 @@
 
 /* Ruby — dark, red */
 [data-theme="ruby"] {
-	--background: #0e0b0b;
+	--background: #0d0c0c;
 	--foreground: #f2dde0;
-	--card: #181314;
+	--card: #171415;
 	--card-foreground: #f2dde0;
-	--popover: #1d1819;
+	--popover: #1c191a;
 	--popover-foreground: #f2dde0;
 	--primary: #ee7386;
 	--primary-foreground: #1a0d10;
-	--secondary: #241e1f;
+	--secondary: #231f20;
 	--secondary-foreground: #f2dde0;
-	--muted: #1d1819;
+	--muted: #1c191a;
 	--muted-foreground: #bb969b;
-	--accent: #272122;
+	--accent: #262223;
 	--accent-foreground: #f2dde0;
 	--destructive: #e06e93;
 	--destructive-foreground: #1a0d10;
@@ -417,17 +417,17 @@
 	--chart-4: #4fcfa4;
 	--chart-5: #e0b06b;
 
-	--sidebar: #130f0f;
+	--sidebar: #121010;
 	--sidebar-foreground: #f2dde0;
 	--sidebar-primary: #ee7386;
 	--sidebar-primary-foreground: #1a0d10;
-	--sidebar-accent: #272122;
+	--sidebar-accent: #262223;
 	--sidebar-accent-foreground: #f2dde0;
 	--sidebar-border: rgba(255, 255, 255, 0.07);
 	--sidebar-ring: #ee7386;
 
 	/* Honami custom */
-	--honami-bg-2: #130f0f;
+	--honami-bg-2: #121010;
 	--honami-ink-dim: #bb969b;
 	--honami-mute: #8c6469;
 	--honami-accent: #ee7386;
@@ -438,7 +438,7 @@
 	--honami-accent-line: rgba(238, 115, 134, 0.3);
 	--honami-elev: rgba(255, 255, 255, 0.045);
 	--honami-elev-2: rgba(255, 255, 255, 0.08);
-	--honami-glass: rgba(29, 24, 25, 0.68);
+	--honami-glass: rgba(28, 25, 26, 0.68);
 	--honami-glass-brd: rgba(255, 255, 255, 0.08);
 	--honami-blur: blur(26px) saturate(1.1);
 	--honami-add: #4fcfa4;
@@ -449,19 +449,19 @@
 
 /* Topaz — dark, orange */
 [data-theme="topaz"] {
-	--background: #0e0c09;
+	--background: #0d0c0a;
 	--foreground: #f2e6d5;
-	--card: #171411;
+	--card: #151413;
 	--card-foreground: #f2e6d5;
-	--popover: #1c1915;
+	--popover: #1a1917;
 	--popover-foreground: #f2e6d5;
 	--primary: #e6a04f;
 	--primary-foreground: #1a1206;
-	--secondary: #221f1b;
+	--secondary: #211f1c;
 	--secondary-foreground: #f2e6d5;
-	--muted: #1c1915;
+	--muted: #1a1917;
 	--muted-foreground: #bfae94;
-	--accent: #26221e;
+	--accent: #24221f;
 	--accent-foreground: #f2e6d5;
 	--destructive: #e06e93;
 	--destructive-foreground: #1a1206;
@@ -479,17 +479,17 @@
 	--chart-4: #4fcfa4;
 	--chart-5: #e0b06b;
 
-	--sidebar: #13100d;
+	--sidebar: #11100f;
 	--sidebar-foreground: #f2e6d5;
 	--sidebar-primary: #e6a04f;
 	--sidebar-primary-foreground: #1a1206;
-	--sidebar-accent: #26221e;
+	--sidebar-accent: #24221f;
 	--sidebar-accent-foreground: #f2e6d5;
 	--sidebar-border: rgba(255, 255, 255, 0.07);
 	--sidebar-ring: #e6a04f;
 
 	/* Honami custom */
-	--honami-bg-2: #13100d;
+	--honami-bg-2: #11100f;
 	--honami-ink-dim: #bfae94;
 	--honami-mute: #8c7b5f;
 	--honami-accent: #e6a04f;
@@ -500,7 +500,7 @@
 	--honami-accent-line: rgba(230, 160, 79, 0.3);
 	--honami-elev: rgba(255, 255, 255, 0.045);
 	--honami-elev-2: rgba(255, 255, 255, 0.08);
-	--honami-glass: rgba(28, 25, 21, 0.68);
+	--honami-glass: rgba(26, 25, 23, 0.68);
 	--honami-glass-brd: rgba(255, 255, 255, 0.08);
 	--honami-blur: blur(26px) saturate(1.1);
 	--honami-add: #4fcfa4;
@@ -511,19 +511,19 @@
 
 /* Jade — dark, green */
 [data-theme="jade"] {
-	--background: #090e0c;
+	--background: #0a0d0c;
 	--foreground: #d8f2e4;
-	--card: #111714;
+	--card: #131514;
 	--card-foreground: #d8f2e4;
-	--popover: #151c18;
+	--popover: #171a18;
 	--popover-foreground: #d8f2e4;
 	--primary: #4fd39a;
 	--primary-foreground: #06180f;
-	--secondary: #1b221f;
+	--secondary: #1c211f;
 	--secondary-foreground: #d8f2e4;
-	--muted: #151c18;
+	--muted: #171a18;
 	--muted-foreground: #93bfa6;
-	--accent: #1e2622;
+	--accent: #1f2422;
 	--accent-foreground: #d8f2e4;
 	--destructive: #e06e93;
 	--destructive-foreground: #06180f;
@@ -541,17 +541,17 @@
 	--chart-4: #4fcfa4;
 	--chart-5: #e0b06b;
 
-	--sidebar: #0d1310;
+	--sidebar: #0f1110;
 	--sidebar-foreground: #d8f2e4;
 	--sidebar-primary: #4fd39a;
 	--sidebar-primary-foreground: #06180f;
-	--sidebar-accent: #1e2622;
+	--sidebar-accent: #1f2422;
 	--sidebar-accent-foreground: #d8f2e4;
 	--sidebar-border: rgba(255, 255, 255, 0.07);
 	--sidebar-ring: #4fd39a;
 
 	/* Honami custom */
-	--honami-bg-2: #0d1310;
+	--honami-bg-2: #0f1110;
 	--honami-ink-dim: #93bfa6;
 	--honami-mute: #5f8c74;
 	--honami-accent: #4fd39a;
@@ -562,7 +562,7 @@
 	--honami-accent-line: rgba(79, 211, 154, 0.3);
 	--honami-elev: rgba(255, 255, 255, 0.045);
 	--honami-elev-2: rgba(255, 255, 255, 0.08);
-	--honami-glass: rgba(21, 28, 24, 0.68);
+	--honami-glass: rgba(23, 26, 24, 0.68);
 	--honami-glass-brd: rgba(255, 255, 255, 0.08);
 	--honami-blur: blur(26px) saturate(1.1);
 	--honami-add: #4fcfa4;
