@@ -1,13 +1,3 @@
-import type * as React from "react";
-
-import { useTheme } from "@shiron/ui/hooks/use-theme";
-import {
-	getTheme,
-	type ThemeMode,
-	type ThemeName,
-	themes,
-} from "@shiron/ui/lib/themes";
-import { cn } from "@shiron/ui/lib/utils";
 import {
 	Select,
 	SelectContent,
@@ -17,6 +7,16 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@shiron/ui/components/ui/select";
+
+import { useTheme } from "@shiron/ui/hooks/use-theme";
+import {
+	getTheme,
+	type ThemeMode,
+	type ThemeName,
+	themes,
+} from "@shiron/ui/lib/themes";
+import { cn } from "@shiron/ui/lib/utils";
+import type * as React from "react";
 
 const MODES: { mode: ThemeMode; label: string }[] = [
 	{ mode: "dark", label: "Dark" },
