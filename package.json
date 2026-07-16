@@ -11,7 +11,9 @@
         "test:ui": "vitest --ui",
         "test:browser": "vitest run --project css",
         "test:all": "vitest run",
-        "coverage": "vitest run --project unit --coverage"
+        "coverage": "vitest run --project unit --coverage",
+        "demo:dev": "pnpm -C demo dev",
+        "demo:build": "pnpm -C demo build"
     },
     "exports": {
         "./*": "./src/*",

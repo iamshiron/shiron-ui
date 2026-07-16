@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource-variable/fredoka";
+@import "@fontsource-variable/azeret-mono";
+@import "@shiron/ui/styles/globals.css";
+
+/* Tailwind auto-detects classes in this app's own source, but the library
+   lives outside it (aliased to ../src), so point Tailwind at the components
+   too — otherwise their utility classes never get generated. */
+@source "../../../src/components";
+
+/* Solar v2 icons read their size from --solar-size (their width/height is a
+   var()); set a sane default for bare icons. Components that size icons via
+   `[&_svg]:size-*` still win. */
+:root {
+	--solar-size: 1rem;
+}
+
+html,
+body,
+#root {
+	min-height: 100%;
+}
+
+body {
+	background-color: var(--background);
+	color: var(--foreground);
+}

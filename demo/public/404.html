@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>@shiron/ui</title>
+        <script>
+            // GitHub Pages serves this for unknown paths (it has no SPA
+            // rewrite). Stash the deep link and bounce to the app base; index.html
+            // restores it before the router boots. `BASE` must match the Pages
+            // base path the app is built with (see the deploy workflow).
+            // NGINX hosting ignores this file — use `try_files $uri /index.html`.
+            (function () {
+                var BASE = "/shiron-ui/";
+                sessionStorage.redirect = location.href;
+                location.replace(location.origin + BASE);
+            })();
+        </script>
+    </head>
+    <body></body>
+</html>
