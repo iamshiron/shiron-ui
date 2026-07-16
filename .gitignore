@@ -24,3 +24,9 @@ ui-design/
 
 # local scratch screenshots
 .test/
+
+# test coverage
+coverage/
+
+# vitest browser-mode failure screenshots
+__screenshots__/
