@@ -253,6 +253,14 @@ function BackgroundSpotlight({ animated = true }: BackgroundLayerProps) {
  * so it never janks) and fully configurable via `rotateX` / `rotateY` /
  * `rotateZ` (degrees).
  */
+/**
+ * Reference viewport (px) the tilt scene is authored against. Cell size, line
+ * width and perspective are given in px at this width, then expressed in `vmax`
+ * so the whole scene scales as a unit — identical at any browser zoom or window
+ * size. Fixed px would make the cell-to-viewport ratio drift as you zoom.
+ */
+const TILT_REFERENCE_VMAX = 1920;
+
 function BackgroundTiltGrid({
 	rotateX = 38,
 	rotateY = 0,
@@ -261,6 +269,16 @@ function BackgroundTiltGrid({
 	cellSize = 46,
 	lineWidth = 1,
 }: BackgroundLayerProps) {
+	// Convert a px value (at the reference viewport) to a viewport-relative
+	// length, so zoom scales the plane and the grid together instead of apart.
+	const vmax = (px: number) => `${(px / TILT_REFERENCE_VMAX) * 100}vmax`;
+	const cell = vmax(cellSize);
+	const line = vmax(lineWidth);
+	// A sub-pixel blur softens the hard line edges. CSS rasterises the gradient
+	// then point-samples it under the 3D transform (no mipmapping), so distant
+	// lines that compress below a pixel would otherwise stair-step/shimmer. This
+	// is edge anti-aliasing (a device-pixel concern), so it stays in px.
+	const softening = `${lineWidth * 0.75}px`;
 	// The soft-edge mask lives on the viewport-sized container (not the plane),
 	// so the fade stays anchored to the screen. The grid plane itself is huge
 	// so it keeps covering the viewport at steep rotations.
@@ -268,16 +286,21 @@ function BackgroundTiltGrid({
 	return (
 		<div
 			data-slot="background-tilt"
-			className="absolute inset-0 overflow-hidden [perspective:1200px]"
+			className="absolute inset-0 overflow-hidden"
 			aria-hidden="true"
-			style={{ maskImage: mask, WebkitMaskImage: mask }}
+			style={{
+				perspective: vmax(1200),
+				maskImage: mask,
+				WebkitMaskImage: mask,
+			}}
 		>
 			<div
 				className="absolute top-1/2 left-1/2 h-[250vmax] w-[250vmax]"
 				style={{
 					transform: `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) scale(${scale})`,
-					backgroundImage: `linear-gradient(var(--honami-accent-line) ${lineWidth}px, transparent ${lineWidth}px), linear-gradient(90deg, var(--honami-accent-line) ${lineWidth}px, transparent ${lineWidth}px)`,
-					backgroundSize: `${cellSize}px ${cellSize}px`,
+					backgroundImage: `linear-gradient(var(--honami-accent-line) ${line}, transparent ${line}), linear-gradient(90deg, var(--honami-accent-line) ${line}, transparent ${line})`,
+					backgroundSize: `${cell} ${cell}`,
+					filter: `blur(${softening})`,
 				}}
 			/>
 		</div>
