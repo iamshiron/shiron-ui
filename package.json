@@ -18,7 +18,8 @@
         "./styles/globals.css": "./src/styles/globals.css",
         "./lib/utils": "./src/lib/utils.ts",
         "./lib/themes": "./src/lib/themes.ts",
-        "./hooks/use-mobile": "./src/hooks/use-mobile.ts"
+        "./hooks/use-mobile": "./src/hooks/use-mobile.ts",
+        "./hooks/use-theme": "./src/hooks/use-theme.ts"
     },
     "files": [
         "src"

@@ -1,8 +1,10 @@
 import { describe, expect, it } from "vitest";
 import {
+	accents,
 	defaultTheme,
 	getTheme,
 	isDarkTheme,
+	themeForAccent,
 	themeMode,
 	themes,
 } from "@shiron/ui/lib/themes";
@@ -28,5 +30,28 @@ describe("themes", () => {
 	it("reports dark themes", () => {
 		expect(isDarkTheme("amethyst")).toBe(true);
 		expect(isDarkTheme("jasper")).toBe(false);
+	});
+
+	it("gives every accent a light and a dark partner", () => {
+		for (const accent of accents) {
+			expect(themeForAccent(accent.id, "light")).toBeDefined();
+			expect(themeForAccent(accent.id, "dark")).toBeDefined();
+		}
+	});
+
+	it("pairs neutral as onyx (dark) / opal (light)", () => {
+		expect(themeForAccent("neutral", "dark")).toBe("onyx");
+		expect(themeForAccent("neutral", "light")).toBe("opal");
+	});
+
+	it("pairs purple as amethyst (dark) / jasper (light)", () => {
+		expect(themeForAccent("purple", "dark")).toBe("amethyst");
+		expect(themeForAccent("purple", "light")).toBe("jasper");
+	});
+
+	it("exposes a swatch for every theme", () => {
+		for (const theme of themes) {
+			expect(theme.swatch).toMatch(/^#[0-9a-f]{6}$/i);
+		}
 	});
 });
