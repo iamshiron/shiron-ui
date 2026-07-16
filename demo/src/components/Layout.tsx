@@ -58,7 +58,7 @@ export function Layout() {
 				<div className="mx-auto flex h-14 w-full max-w-6xl items-center gap-4 px-4 sm:px-6">
 					<NavLink to="/" className="flex items-center gap-2">
 						<span className="font-heading font-semibold text-base tracking-tight">
-							shiron/ui
+							Honami UI
 						</span>
 					</NavLink>
 
@@ -103,7 +103,7 @@ export function Layout() {
 							GitHub
 						</a>
 					</span>
-					<span>Neo-Tokyo at Night</span>
+					<span>Twelve themes, one token layer</span>
 				</div>
 			</footer>
 		</div>

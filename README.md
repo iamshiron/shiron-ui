@@ -1,9 +1,9 @@
-# @shiron/ui
+# Honami UI
 
-A source-only React 19 + Tailwind CSS v4 component library — a "Neo-Tokyo at
-Night" take on [shadcn/ui](https://ui.shadcn.com): muted-mauve surfaces,
-glassmorphism, gradient accents and twelve named themes, all driven by one
-design-token layer.
+A source-only React 19 + Tailwind CSS v4 component library built on
+[shadcn/ui](https://ui.shadcn.com): glassmorphic surfaces, gradient accents and
+twelve named themes, all driven by one design-token layer. Published as the
+`@shiron/ui` package.
 
 **[Live demo →](https://iamshiron.github.io/shiron-ui/)** ·
 **[Storybook →](https://iamshiron.github.io/shiron-ui/storybook/)**

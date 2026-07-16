@@ -21,13 +21,13 @@ export function EssentialsShowcase({ className }: { className?: string }) {
 			<div className="flex flex-col gap-1.5">
 				<div className="flex items-center gap-2">
 					<h3 className="font-heading font-semibold text-xl tracking-tight">
-						Neo-Tokyo at Night
+						Honami UI
 					</h3>
 					<Badge>v0.0.1</Badge>
 				</div>
 				<p className="text-muted-foreground text-sm leading-relaxed">
-					A muted-mauve, glassmorphic take on shadcn/ui with gradient accents.
-					Every control is themeable through a single token layer.
+					A glassmorphic take on shadcn/ui with gradient accents. Every control
+					is themeable through a single token layer.
 				</p>
 			</div>
 

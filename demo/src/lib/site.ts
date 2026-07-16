@@ -1,7 +1,7 @@
 /** Static links + metadata used across the demo shell. */
 export const site = {
-	name: "@shiron/ui",
-	tagline: "Neo-Tokyo at Night — a React 19 + Tailwind v4 component set.",
+	name: "Honami UI",
+	tagline: "A themeable React 19 + Tailwind v4 component set.",
 	repo: "https://github.com/iamshiron/shiron-ui",
 	// Storybook is deployed next to the demo on the same Pages site. Resolve it
 	// against the build's base URL so it works at `/shiron-ui/` and at `/`.
