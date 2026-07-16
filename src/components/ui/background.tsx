@@ -170,6 +170,26 @@ function BackgroundDots({ className, ...props }: React.ComponentProps<"div">) {
 	);
 }
 
+/** Angled light shafts sweeping from the top, faded with a radial mask. */
+function BackgroundBeams({ animated = true }: BackgroundLayerProps) {
+	const mask = "radial-gradient(70% 60% at 50% 0%, black, transparent 75%)";
+	return (
+		<div
+			data-slot="background-beams"
+			className="absolute -inset-x-1/2 -top-1/2 h-[200%]"
+			style={{
+				backgroundImage:
+					"repeating-linear-gradient(65deg, transparent 0 60px, var(--honami-accent-soft) 60px 62px, transparent 62px 140px)",
+				maskImage: mask,
+				WebkitMaskImage: mask,
+				animation: animated
+					? "honami-beam 14s linear infinite alternate"
+					: undefined,
+			}}
+		/>
+	);
+}
+
 const AURORA_OPACITY: Record<BackgroundIntensity, number> = {
 	subtle: 0.25,
 	default: 0.4,
@@ -250,6 +270,12 @@ const backgrounds = {
 	),
 	mesh: (props: BackgroundLayerProps) => <BackgroundMesh {...props} />,
 	ribbons: (props: BackgroundLayerProps) => <BackgroundAurora {...props} />,
+	beams: (props: BackgroundLayerProps) => (
+		<>
+			<BackgroundWash />
+			<BackgroundBeams {...props} />
+		</>
+	),
 	solid: () => null,
 } satisfies Record<string, (props: BackgroundLayerProps) => React.ReactNode>;
 
@@ -315,6 +341,7 @@ export {
 	BackgroundDots,
 	BackgroundMesh,
 	BackgroundAurora,
+	BackgroundBeams,
 	BackgroundGrain,
 	BackgroundVignette,
 	BackgroundScanlines,

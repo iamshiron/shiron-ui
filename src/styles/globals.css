@@ -371,6 +371,15 @@
 		transform: rotate(360deg);
 	}
 }
+/* Slow sweep for angled light beams. */
+@keyframes honami-beam {
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: 280px 0;
+	}
+}
 
 .honami-caret {
 	display: inline-block;
