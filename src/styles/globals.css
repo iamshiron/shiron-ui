@@ -3,10 +3,35 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ─────────────────────────────────────────────────────────────
+   State/orientation variants used across the components. These
+   bridge both the Radix (`data-state="…"`, `data-orientation="…"`)
+   and Base UI (`data-checked`, `data-open`, …) attribute
+   conventions so `@shiron/ui` is self-contained — no external
+   shadcn stylesheet required.
+   ───────────────────────────────────────────────────────────── */
+@custom-variant data-open (&:where([data-state="open"], [data-open]:not([data-open="false"])));
+@custom-variant data-closed (&:where([data-state="closed"], [data-closed]:not([data-closed="false"])));
+@custom-variant data-checked (&:where([data-state="checked"], [data-checked]:not([data-checked="false"])));
+@custom-variant data-unchecked (&:where([data-state="unchecked"], [data-unchecked]:not([data-unchecked="false"])));
+@custom-variant data-selected (&:where([data-selected="true"], [data-state="selected"]));
+@custom-variant data-disabled (&:where([data-disabled="true"], [data-disabled]:not([data-disabled="false"])));
+@custom-variant data-active (&:where([data-state="active"], [data-active]:not([data-active="false"])));
+@custom-variant data-horizontal (&:where([data-orientation="horizontal"]));
+@custom-variant data-vertical (&:where([data-orientation="vertical"]));
+
+/* ─────────────────────────────────────────────────────────────
+   Shiron UI — "Neo-Tokyo at Night"
+   Muted mauve ground; a vibrant purple→pink gradient is reserved
+   for accents (primary actions, brand, focus) only. Surfaces lean
+   on soft glass, hairline borders and a faint purple glow.
+   ───────────────────────────────────────────────────────────── */
+
 @theme inline {
 	--font-heading: var(--font-sans);
 	--font-sans: "Fredoka Variable", sans-serif;
 	--font-mono: "Azeret Mono Variable", monospace;
+
 	--color-sidebar-ring: var(--sidebar-ring);
 	--color-sidebar-border: var(--sidebar-border);
 	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -41,6 +66,23 @@
 	--color-card: var(--card);
 	--color-foreground: var(--foreground);
 	--color-background: var(--background);
+
+	/* Honami accent surface tokens (mapped for `bg-honami-*`, `text-honami-*`) */
+	--color-honami-accent: var(--honami-accent);
+	--color-honami-accent-2: var(--honami-accent-2);
+	--color-honami-accent-soft: var(--honami-accent-soft);
+	--color-honami-accent-line: var(--honami-accent-line);
+	--color-honami-cyan: var(--honami-cyan);
+	--color-honami-ink-dim: var(--honami-ink-dim);
+	--color-honami-mute: var(--honami-mute);
+	--color-honami-bg-2: var(--honami-bg-2);
+	--color-honami-elev: var(--honami-elev);
+	--color-honami-elev-2: var(--honami-elev-2);
+	--color-honami-glass-brd: var(--honami-glass-brd);
+	--color-add: var(--honami-add);
+	--color-del: var(--honami-del);
+	--color-mod: var(--honami-mod);
+
 	--radius-sm: calc(var(--radius) * 0.6);
 	--radius-md: calc(var(--radius) * 0.8);
 	--radius-lg: var(--radius);
@@ -48,83 +90,133 @@
 	--radius-2xl: calc(var(--radius) * 1.8);
 	--radius-3xl: calc(var(--radius) * 2.2);
 	--radius-4xl: calc(var(--radius) * 2.6);
+
+	--shadow-glow: var(--honami-glow);
 }
 
+/* Light theme (muted lavender-grey) */
 :root {
-	--background: oklch(1 0 0);
-	--foreground: oklch(0.145 0.008 326);
-	--card: oklch(1 0 0);
-	--card-foreground: oklch(0.145 0.008 326);
-	--popover: oklch(1 0 0);
-	--popover-foreground: oklch(0.145 0.008 326);
-	--primary: oklch(0.518 0.253 323.949);
-	--primary-foreground: oklch(0.977 0.017 320.058);
-	--secondary: oklch(0.967 0.001 286.375);
-	--secondary-foreground: oklch(0.21 0.006 285.885);
-	--muted: oklch(0.96 0.003 325.6);
-	--muted-foreground: oklch(0.542 0.034 322.5);
-	--accent: oklch(0.96 0.003 325.6);
-	--accent-foreground: oklch(0.212 0.019 322.12);
-	--destructive: oklch(0.577 0.245 27.325);
-	--border: oklch(0.922 0.005 325.62);
-	--input: oklch(0.922 0.005 325.62);
-	--ring: oklch(0.711 0.019 323.02);
-	--chart-1: oklch(0.865 0.012 325.68);
-	--chart-2: oklch(0.542 0.034 322.5);
-	--chart-3: oklch(0.435 0.029 321.78);
-	--chart-4: oklch(0.364 0.029 323.89);
-	--chart-5: oklch(0.263 0.024 320.12);
-	--info: oklch(0.546 0.245 262.881);
-	--success: oklch(0.627 0.194 149.214);
-	--warning: oklch(0.795 0.184 86.047);
-	--radius: 0.875rem;
+	--background: #ede6f7;
+	--foreground: #2b2340;
+	--card: #f4eefb;
+	--card-foreground: #2b2340;
+	--popover: #f6f1fc;
+	--popover-foreground: #2b2340;
+	--primary: #7e52d8;
+	--primary-foreground: #ffffff;
+	--secondary: #e2d8f0;
+	--secondary-foreground: #2b2340;
+	--muted: #e6ddf2;
+	--muted-foreground: #6b6184;
+	--accent: #e2d6f4;
+	--accent-foreground: #3a2c58;
+	--destructive: #d95c86;
+	--destructive-foreground: #ffffff;
+	--border: rgba(90, 60, 160, 0.14);
+	--input: rgba(90, 60, 160, 0.16);
+	--ring: #7e52d8;
+	--radius: 0.85rem;
 
-	--sidebar: oklch(0.985 0 0);
-	--sidebar-foreground: oklch(0.145 0.008 326);
-	--sidebar-primary: oklch(0.591 0.293 322.896);
-	--sidebar-primary-foreground: oklch(0.977 0.017 320.058);
-	--sidebar-accent: oklch(0.96 0.003 325.6);
-	--sidebar-accent-foreground: oklch(0.212 0.019 322.12);
-	--sidebar-border: oklch(0.922 0.005 325.62);
-	--sidebar-ring: oklch(0.711 0.019 323.02);
+	--info: #4f93b8;
+	--success: #2fa980;
+	--warning: #c98a2a;
+
+	--chart-1: #7e52d8;
+	--chart-2: #c766a0;
+	--chart-3: #4f93b8;
+	--chart-4: #2fa980;
+	--chart-5: #c98a2a;
+
+	--sidebar: #f4eefb;
+	--sidebar-foreground: #2b2340;
+	--sidebar-primary: #7e52d8;
+	--sidebar-primary-foreground: #ffffff;
+	--sidebar-accent: #e2d6f4;
+	--sidebar-accent-foreground: #3a2c58;
+	--sidebar-border: rgba(90, 60, 160, 0.14);
+	--sidebar-ring: #7e52d8;
+
+	/* Honami custom */
+	--honami-bg-2: #e6ddf2;
+	--honami-ink-dim: #6b6184;
+	--honami-mute: #8a7fa6;
+	--honami-accent: #7e52d8;
+	--honami-accent-2: #c766a0;
+	--honami-cyan: #4f93b8;
+	--honami-grad: linear-gradient(135deg, #8a5ce0, #7a4cd0 55%, #b65c9a);
+	--honami-accent-soft: rgba(126, 82, 216, 0.1);
+	--honami-accent-line: rgba(126, 82, 216, 0.28);
+	--honami-elev: rgba(90, 60, 160, 0.055);
+	--honami-elev-2: rgba(90, 60, 160, 0.1);
+	--honami-glass: rgba(246, 241, 252, 0.72);
+	--honami-glass-brd: rgba(90, 60, 160, 0.14);
+	--honami-blur: blur(24px) saturate(1.15);
+	--honami-add: #2fa980;
+	--honami-del: #d95c86;
+	--honami-mod: #c98a2a;
+	--honami-glow: 0 0 18px rgba(126, 82, 216, 0.12);
 }
 
+/* Dark theme (primary) — deep muted mauve */
 .dark {
-	--background: oklch(0.145 0.008 326);
-	--foreground: oklch(0.985 0 0);
-	--card: oklch(0.212 0.019 322.12);
-	--card-foreground: oklch(0.985 0 0);
-	--popover: oklch(0.212 0.019 322.12);
-	--popover-foreground: oklch(0.985 0 0);
-	--primary: oklch(0.452 0.211 324.591);
-	--primary-foreground: oklch(0.977 0.017 320.058);
-	--secondary: oklch(0.274 0.006 286.033);
-	--secondary-foreground: oklch(0.985 0 0);
-	--muted: oklch(0.263 0.024 320.12);
-	--muted-foreground: oklch(0.711 0.019 323.02);
-	--accent: oklch(0.263 0.024 320.12);
-	--accent-foreground: oklch(0.985 0 0);
-	--destructive: oklch(0.704 0.191 22.216);
-	--border: oklch(1 0 0 / 10%);
-	--input: oklch(1 0 0 / 15%);
-	--ring: oklch(0.542 0.034 322.5);
-	--chart-1: oklch(0.865 0.012 325.68);
-	--chart-2: oklch(0.542 0.034 322.5);
-	--chart-3: oklch(0.435 0.029 321.78);
-	--chart-4: oklch(0.364 0.029 323.89);
-	--chart-5: oklch(0.263 0.024 320.12);
-	--sidebar: oklch(0.212 0.019 322.12);
-	--sidebar-foreground: oklch(0.985 0 0);
-	--sidebar-primary: oklch(0.667 0.295 322.15);
-	--sidebar-primary-foreground: oklch(0.977 0.017 320.058);
-	--sidebar-accent: oklch(0.263 0.024 320.12);
-	--sidebar-accent-foreground: oklch(0.985 0 0);
-	--sidebar-border: oklch(1 0 0 / 10%);
-	--sidebar-ring: oklch(0.542 0.034 322.5);
+	--background: #0c0912;
+	--foreground: #e4dcef;
+	--card: #14101b;
+	--card-foreground: #e4dcef;
+	--popover: #171220;
+	--popover-foreground: #e4dcef;
+	--primary: #b79bee;
+	--primary-foreground: #1a1326;
+	--secondary: #1c1726;
+	--secondary-foreground: #e4dcef;
+	--muted: #171220;
+	--muted-foreground: #9e93b4;
+	--accent: #221b30;
+	--accent-foreground: #e4dcef;
+	--destructive: #e06e93;
+	--destructive-foreground: #1a1326;
+	--border: rgba(255, 255, 255, 0.07);
+	--input: rgba(255, 255, 255, 0.1);
+	--ring: #b79bee;
 
-	--info: oklch(0.623 0.234 262.881);
-	--success: oklch(0.696 0.178 149.214);
-	--warning: oklch(0.838 0.167 86.047);
+	--info: #69b8d8;
+	--success: #4fcfa4;
+	--warning: #e0b06b;
+
+	--chart-1: #b79bee;
+	--chart-2: #d28fc4;
+	--chart-3: #69b8d8;
+	--chart-4: #4fcfa4;
+	--chart-5: #e0b06b;
+
+	--sidebar: #100c16;
+	--sidebar-foreground: #e4dcef;
+	--sidebar-primary: #b79bee;
+	--sidebar-primary-foreground: #1a1326;
+	--sidebar-accent: #221b30;
+	--sidebar-accent-foreground: #e4dcef;
+	--sidebar-border: rgba(255, 255, 255, 0.07);
+	--sidebar-ring: #b79bee;
+
+	/* Honami custom */
+	--honami-bg-2: #100c16;
+	--honami-ink-dim: #9e93b4;
+	--honami-mute: #6b6184;
+	--honami-accent: #b79bee;
+	--honami-accent-2: #d28fc4;
+	--honami-cyan: #69b8d8;
+	--honami-grad: linear-gradient(135deg, #8e6fd6, #7c5cc0 55%, #a567ae);
+	--honami-accent-soft: rgba(160, 130, 235, 0.12);
+	--honami-accent-line: rgba(160, 130, 235, 0.3);
+	--honami-elev: rgba(255, 255, 255, 0.045);
+	--honami-elev-2: rgba(255, 255, 255, 0.08);
+	--honami-glass: rgba(19, 15, 26, 0.68);
+	--honami-glass-brd: rgba(255, 255, 255, 0.08);
+	--honami-blur: blur(26px) saturate(1.1);
+	--honami-add: #4fcfa4;
+	--honami-del: #e06e93;
+	--honami-mod: #e0b06b;
+	--honami-glow: 0 0 14px rgba(140, 105, 215, 0.16);
 }
 
 @layer base {
@@ -137,12 +229,147 @@
 	html {
 		@apply font-sans;
 	}
+
+	/* Sleek, thin scrollbars that read as part of the surface rather than the
+	   chunky OS default. WebKit uses a transparent border to inset the thumb. */
+	* {
+		scrollbar-width: thin;
+		scrollbar-color: var(--honami-elev-2) transparent;
+	}
+	::-webkit-scrollbar {
+		width: 10px;
+		height: 10px;
+	}
+	::-webkit-scrollbar-track,
+	::-webkit-scrollbar-corner {
+		background: transparent;
+	}
+	::-webkit-scrollbar-thumb {
+		background-color: var(--honami-elev-2);
+		background-clip: padding-box;
+		border: 3px solid transparent;
+		border-radius: 999px;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		background-color: var(--honami-mute);
+	}
 }
 
+/* ── Honami surface utilities ─────────────────────────────────── */
+
+/* Frosted-glass surface for overlays, menus and floating panels. */
 @utility glass {
-	background-color: oklch(1 0 0 / 75%);
-	backdrop-filter: blur(12px);
-	.dark & {
-		background-color: oklch(0.145 0.008 326 / 80%);
+	background: var(--honami-glass);
+	backdrop-filter: var(--honami-blur);
+	-webkit-backdrop-filter: var(--honami-blur);
+	border: 1px solid var(--honami-glass-brd);
+}
+
+/* Alias kept for design-reference parity. */
+@utility honami-glass {
+	background: var(--honami-glass);
+	backdrop-filter: var(--honami-blur);
+	-webkit-backdrop-filter: var(--honami-blur);
+	border: 1px solid var(--honami-glass-brd);
+}
+
+/* Paint text with the vibrant Honami accent gradient. */
+@utility honami-grad-text {
+	background: var(--honami-grad);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	color: transparent;
+}
+
+/* Fill an element with the accent gradient (buttons, brand marks). Uses
+   `background-image` (not the `background` shorthand) so it composes with
+   `bg-clip-padding` for crisp edges on bordered controls. */
+@utility honami-grad {
+	background-image: var(--honami-grad);
+}
+
+/* Faint purple bloom used on active/elevated surfaces. */
+@utility honami-glow {
+	box-shadow: var(--honami-glow);
+}
+
+/* Hide scrollbars while keeping the element scrollable. */
+@utility no-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+/* ── Motion ───────────────────────────────────────────────────── */
+@keyframes honami-sweep {
+	0% {
+		transform: translateX(-120%);
+	}
+	100% {
+		transform: translateX(220%);
+	}
+}
+@keyframes honami-ping {
+	0%,
+	100% {
+		opacity: 0.35;
+		transform: scale(0.85);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1.15);
+	}
+}
+@keyframes honami-fade-in {
+	from {
+		opacity: 0;
+		transform: translateY(6px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@keyframes honami-blink {
+	0%,
+	49% {
+		opacity: 1;
+	}
+	50%,
+	100% {
+		opacity: 0;
+	}
+}
+
+.honami-caret {
+	display: inline-block;
+	width: 0.55em;
+	height: 1.05em;
+	transform: translateY(0.18em);
+	background: var(--honami-accent);
+	animation: honami-blink 1.1s step-end infinite;
+}
+
+.honami-shimmer {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		100deg,
+		transparent 20%,
+		var(--honami-accent-soft) 45%,
+		rgba(210, 143, 196, 0.14) 55%,
+		transparent 80%
+	);
+	transform: translateX(-120%);
+	animation: honami-sweep 1.9s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.honami-shimmer {
+		/* biome-ignore lint/complexity/noImportantStyles: reduced-motion override must beat the animation utility */
+		animation: none !important;
 	}
 }
