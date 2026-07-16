@@ -154,6 +154,44 @@ describe("Background spotlight", () => {
 	});
 });
 
+describe("Background config", () => {
+	it("applies cellSize and lineWidth to the grid", () => {
+		const { container } = render(
+			<Background variant="grid" cellSize={80} lineWidth={3} />,
+		);
+		const grid = container.querySelector<HTMLElement>(
+			'[data-slot="background-grid"]',
+		);
+
+		expect(grid?.style.backgroundSize).toBe("80px 80px");
+		expect(grid?.style.backgroundImage).toContain("3px");
+	});
+
+	it("applies the tilt rotations", () => {
+		const { container } = render(
+			<Background variant="tilt" rotateX={12} rotateY={34} rotateZ={5} />,
+		);
+		const plane = container.querySelector<HTMLElement>(
+			'[data-slot="background-tilt"] > div',
+		);
+
+		expect(plane?.style.transform).toContain("rotateX(12deg)");
+		expect(plane?.style.transform).toContain("rotateY(34deg)");
+		expect(plane?.style.transform).toContain("rotateZ(5deg)");
+	});
+
+	it("applies overlay opacity", () => {
+		const { container } = render(
+			<Background overlay="grain" overlayOpacity={0.2} />,
+		);
+		const grain = container.querySelector<HTMLElement>(
+			'[data-slot="background-grain"]',
+		);
+
+		expect(grain?.style.opacity).toBe("0.2");
+	});
+});
+
 describe("Background registry", () => {
 	// Every registered variant must render without crashing and tag its shell,
 	// so newly-added presets are covered automatically.

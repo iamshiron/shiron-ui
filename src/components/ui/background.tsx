@@ -12,7 +12,26 @@ type BackgroundLayerProps = {
 	animated?: boolean;
 	/** Scales the blob opacity. */
 	intensity?: BackgroundIntensity;
+	/** Tilt-grid rotation in degrees (used by the `tilt` variant). */
+	rotateX?: number;
+	/** Tilt-grid rotation in degrees (used by the `tilt` variant). */
+	rotateY?: number;
+	/** Tilt-grid rotation in degrees (used by the `tilt` variant). */
+	rotateZ?: number;
+	/** Tilt-grid scale multiplier / zoom (used by the `tilt` variant). */
+	scale?: number;
+	/** Grid/dot cell size in px (grid, dots, tilt). */
+	cellSize?: number;
+	/** Grid line / dot thickness in px (grid, dots, tilt). */
+	lineWidth?: number;
+	/** Animation speed multiplier — 1 is default, 2 twice as fast (animated variants). */
+	speed?: number;
 };
+
+/** Clamp a speed multiplier to a sane, non-zero range. */
+function toSpeed(speed: number | undefined): number {
+	return Math.max(0.1, speed ?? 1);
+}
 
 const BLOB_OPACITY: Record<BackgroundIntensity, [number, number, number]> = {
 	subtle: [0.06, 0.055, 0.045],
@@ -43,8 +62,14 @@ function BackgroundWash({ className, ...props }: React.ComponentProps<"div">) {
 function BackgroundBlobs({
 	animated = true,
 	intensity = "default",
+	speed,
 }: BackgroundLayerProps) {
 	const [o1, o2, o3] = BLOB_OPACITY[intensity];
+	const s = toSpeed(speed);
+	const drift = (base: number, dir = "") =>
+		animated
+			? `honami-drift ${base / s}s ease-in-out infinite${dir}`
+			: undefined;
 	return (
 		<div data-slot="background-blobs">
 			<div
@@ -52,9 +77,7 @@ function BackgroundBlobs({
 				style={{
 					background: "var(--honami-accent)",
 					opacity: o1,
-					animation: animated
-						? "honami-drift 22s ease-in-out infinite"
-						: undefined,
+					animation: drift(22),
 				}}
 			/>
 			<div
@@ -62,9 +85,7 @@ function BackgroundBlobs({
 				style={{
 					background: "var(--honami-accent-2)",
 					opacity: o2,
-					animation: animated
-						? "honami-drift 28s ease-in-out infinite reverse"
-						: undefined,
+					animation: drift(28, " reverse"),
 				}}
 			/>
 			<div
@@ -72,9 +93,7 @@ function BackgroundBlobs({
 				style={{
 					background: "var(--honami-cyan)",
 					opacity: o3,
-					animation: animated
-						? "honami-drift 34s ease-in-out infinite"
-						: undefined,
+					animation: drift(34),
 				}}
 			/>
 		</div>
@@ -82,15 +101,20 @@ function BackgroundBlobs({
 }
 
 /** Faint square grid texture. */
-function BackgroundGrid({ className, ...props }: React.ComponentProps<"div">) {
+function BackgroundGrid({
+	cellSize = 44,
+	lineWidth = 1,
+	className,
+	...props
+}: React.ComponentProps<"div"> &
+	Pick<BackgroundLayerProps, "cellSize" | "lineWidth">) {
 	return (
 		<div
 			data-slot="background-grid"
 			className={cn("absolute inset-0 opacity-[0.025]", className)}
 			style={{
-				backgroundImage:
-					"linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(90deg, var(--foreground) 1px, transparent 1px)",
-				backgroundSize: "44px 44px",
+				backgroundImage: `linear-gradient(var(--foreground) ${lineWidth}px, transparent ${lineWidth}px), linear-gradient(90deg, var(--foreground) ${lineWidth}px, transparent ${lineWidth}px)`,
+				backgroundSize: `${cellSize}px ${cellSize}px`,
 			}}
 			{...props}
 		/>
@@ -104,17 +128,20 @@ const GRAIN_SVG =
 	"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E";
 
 /** Fine film grain — softens gradient banding and adds premium texture. */
-function BackgroundGrain({ className, ...props }: React.ComponentProps<"div">) {
+function BackgroundGrain({
+	opacity = 0.4,
+	scale = 140,
+	className,
+	...props
+}: React.ComponentProps<"div"> & { opacity?: number; scale?: number }) {
 	return (
 		<div
 			data-slot="background-grain"
-			className={cn(
-				"absolute inset-0 opacity-40 mix-blend-soft-light",
-				className,
-			)}
+			className={cn("absolute inset-0 mix-blend-soft-light", className)}
 			style={{
+				opacity,
 				backgroundImage: `url("${GRAIN_SVG}")`,
-				backgroundSize: "140px 140px",
+				backgroundSize: `${scale}px ${scale}px`,
 			}}
 			{...props}
 		/>
@@ -122,14 +149,18 @@ function BackgroundGrain({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 /** Radial edge darkening to focus the centre of the viewport. */
-function BackgroundVignette({ className, ...props }: React.ComponentProps<"div">) {
+function BackgroundVignette({
+	opacity = 0.45,
+	size = 55,
+	className,
+	...props
+}: React.ComponentProps<"div"> & { opacity?: number; size?: number }) {
 	return (
 		<div
 			data-slot="background-vignette"
 			className={cn("absolute inset-0", className)}
 			style={{
-				background:
-					"radial-gradient(120% 100% at 50% 45%, transparent 55%, rgba(0, 0, 0, 0.45))",
+				background: `radial-gradient(120% 100% at 50% 45%, transparent ${size}%, rgba(0, 0, 0, ${opacity}))`,
 			}}
 			{...props}
 		/>
@@ -138,16 +169,18 @@ function BackgroundVignette({ className, ...props }: React.ComponentProps<"div">
 
 /** Thin horizontal CRT / terminal scanlines. */
 function BackgroundScanlines({
+	opacity = 0.6,
+	gap = 3,
 	className,
 	...props
-}: React.ComponentProps<"div">) {
+}: React.ComponentProps<"div"> & { opacity?: number; gap?: number }) {
 	return (
 		<div
 			data-slot="background-scanlines"
-			className={cn("absolute inset-0 opacity-60", className)}
+			className={cn("absolute inset-0", className)}
 			style={{
-				backgroundImage:
-					"repeating-linear-gradient(to bottom, transparent 0 2px, var(--honami-elev-2) 2px 3px)",
+				opacity,
+				backgroundImage: `repeating-linear-gradient(to bottom, transparent 0 ${gap - 1}px, var(--honami-elev-2) ${gap - 1}px ${gap}px)`,
 			}}
 			{...props}
 		/>
@@ -155,15 +188,20 @@ function BackgroundScanlines({
 }
 
 /** Faint dotted texture — quieter than a line grid. */
-function BackgroundDots({ className, ...props }: React.ComponentProps<"div">) {
+function BackgroundDots({
+	cellSize = 22,
+	lineWidth = 1,
+	className,
+	...props
+}: React.ComponentProps<"div"> &
+	Pick<BackgroundLayerProps, "cellSize" | "lineWidth">) {
 	return (
 		<div
 			data-slot="background-dots"
 			className={cn("absolute inset-0 opacity-70", className)}
 			style={{
-				backgroundImage:
-					"radial-gradient(var(--honami-glass-brd) 1px, transparent 1px)",
-				backgroundSize: "22px 22px",
+				backgroundImage: `radial-gradient(var(--honami-glass-brd) ${lineWidth}px, transparent ${lineWidth}px)`,
+				backgroundSize: `${cellSize}px ${cellSize}px`,
 			}}
 			{...props}
 		/>
@@ -210,45 +248,44 @@ function BackgroundSpotlight({ animated = true }: BackgroundLayerProps) {
 	);
 }
 
-/** A synthwave floor grid receding to a glowing horizon. */
-function BackgroundPerspectiveGrid({ animated = true }: BackgroundLayerProps) {
-	const floorMask = "linear-gradient(to bottom, transparent, black 55%)";
+/**
+ * A grid plane tilted in 3D for depth. The rotation is static (no animation,
+ * so it never janks) and fully configurable via `rotateX` / `rotateY` /
+ * `rotateZ` (degrees).
+ */
+function BackgroundTiltGrid({
+	rotateX = 38,
+	rotateY = 0,
+	rotateZ = -3,
+	scale = 1,
+	cellSize = 46,
+	lineWidth = 1,
+}: BackgroundLayerProps) {
+	// The soft-edge mask lives on the viewport-sized container (not the plane),
+	// so the fade stays anchored to the screen. The grid plane itself is huge
+	// so it keeps covering the viewport at steep rotations.
+	const mask = "radial-gradient(100% 85% at 50% 30%, black, transparent 88%)";
 	return (
-		<div data-slot="background-horizon" className="absolute inset-0">
-			{/* horizon glow line at the vanishing point */}
+		<div
+			data-slot="background-tilt"
+			className="absolute inset-0 overflow-hidden [perspective:1200px]"
+			aria-hidden="true"
+			style={{ maskImage: mask, WebkitMaskImage: mask }}
+		>
 			<div
-				className="absolute inset-x-0 top-1/2 h-px"
+				className="absolute top-1/2 left-1/2 h-[250vmax] w-[250vmax]"
 				style={{
-					background: "var(--honami-accent)",
-					boxShadow: "0 0 90px 24px var(--honami-accent-soft)",
+					transform: `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) scale(${scale})`,
+					backgroundImage: `linear-gradient(var(--honami-accent-line) ${lineWidth}px, transparent ${lineWidth}px), linear-gradient(90deg, var(--honami-accent-line) ${lineWidth}px, transparent ${lineWidth}px)`,
+					backgroundSize: `${cellSize}px ${cellSize}px`,
 				}}
 			/>
-			{/* receding floor */}
-			<div
-				className="absolute inset-x-0 top-1/2 bottom-0 [perspective:320px]"
-				aria-hidden="true"
-			>
-				<div
-					className="absolute inset-0 origin-top"
-					style={{
-						transform: "rotateX(70deg)",
-						backgroundImage:
-							"linear-gradient(var(--honami-accent-line) 1px, transparent 1px), linear-gradient(90deg, var(--honami-accent-line) 1px, transparent 1px)",
-						backgroundSize: "40px 40px",
-						maskImage: floorMask,
-						WebkitMaskImage: floorMask,
-						animation: animated
-							? "honami-floor 6s linear infinite"
-							: undefined,
-					}}
-				/>
-			</div>
 		</div>
 	);
 }
 
 /** A field of small twinkling stars. */
-function BackgroundStars({ animated = true }: BackgroundLayerProps) {
+function BackgroundStars({ animated = true, speed }: BackgroundLayerProps) {
 	return (
 		<div
 			data-slot="background-stars"
@@ -265,7 +302,7 @@ function BackgroundStars({ animated = true }: BackgroundLayerProps) {
 				backgroundSize: "200px 200px",
 				opacity: 0.5,
 				animation: animated
-					? "honami-twinkle 4s ease-in-out infinite"
+					? `honami-twinkle ${4 / toSpeed(speed)}s ease-in-out infinite`
 					: undefined,
 			}}
 		/>
@@ -273,7 +310,7 @@ function BackgroundStars({ animated = true }: BackgroundLayerProps) {
 }
 
 /** Angled light shafts sweeping from the top, faded with a radial mask. */
-function BackgroundBeams({ animated = true }: BackgroundLayerProps) {
+function BackgroundBeams({ animated = true, speed }: BackgroundLayerProps) {
 	const mask = "radial-gradient(70% 60% at 50% 0%, black, transparent 75%)";
 	return (
 		<div
@@ -285,7 +322,7 @@ function BackgroundBeams({ animated = true }: BackgroundLayerProps) {
 				maskImage: mask,
 				WebkitMaskImage: mask,
 				animation: animated
-					? "honami-beam 14s linear infinite alternate"
+					? `honami-beam ${14 / toSpeed(speed)}s linear infinite alternate`
 					: undefined,
 			}}
 		/>
@@ -302,6 +339,7 @@ const AURORA_OPACITY: Record<BackgroundIntensity, number> = {
 function BackgroundAurora({
 	animated = true,
 	intensity = "default",
+	speed,
 }: BackgroundLayerProps) {
 	return (
 		<div
@@ -311,14 +349,16 @@ function BackgroundAurora({
 				opacity: AURORA_OPACITY[intensity],
 				background:
 					"conic-gradient(from 0deg at 50% 40%, var(--honami-accent), var(--honami-accent-2), var(--honami-cyan), var(--honami-accent))",
-				animation: animated ? "honami-spin 40s linear infinite" : undefined,
+				animation: animated
+					? `honami-spin ${40 / toSpeed(speed)}s linear infinite`
+					: undefined,
 			}}
 		/>
 	);
 }
 
 /** Several overlapping accent blooms that drift slowly (a mesh gradient). */
-function BackgroundMesh({ animated = true }: BackgroundLayerProps) {
+function BackgroundMesh({ animated = true, speed }: BackgroundLayerProps) {
 	return (
 		<div
 			data-slot="background-mesh"
@@ -331,7 +371,7 @@ function BackgroundMesh({ animated = true }: BackgroundLayerProps) {
 				].join(", "),
 				backgroundSize: "200% 200%",
 				animation: animated
-					? "honami-mesh 24s ease-in-out infinite"
+					? `honami-mesh ${24 / toSpeed(speed)}s ease-in-out infinite`
 					: undefined,
 			}}
 		/>
@@ -349,7 +389,7 @@ const backgrounds = {
 		<>
 			<BackgroundWash />
 			<BackgroundBlobs {...props} />
-			<BackgroundGrid />
+			<BackgroundGrid cellSize={props.cellSize} lineWidth={props.lineWidth} />
 		</>
 	),
 	aurora: (props: BackgroundLayerProps) => (
@@ -358,16 +398,16 @@ const backgrounds = {
 			<BackgroundBlobs {...props} />
 		</>
 	),
-	grid: () => (
+	grid: (props: BackgroundLayerProps) => (
 		<>
 			<BackgroundWash />
-			<BackgroundGrid />
+			<BackgroundGrid cellSize={props.cellSize} lineWidth={props.lineWidth} />
 		</>
 	),
-	dots: () => (
+	dots: (props: BackgroundLayerProps) => (
 		<>
 			<BackgroundWash />
-			<BackgroundDots />
+			<BackgroundDots cellSize={props.cellSize} lineWidth={props.lineWidth} />
 		</>
 	),
 	mesh: (props: BackgroundLayerProps) => <BackgroundMesh {...props} />,
@@ -384,10 +424,10 @@ const backgrounds = {
 			<BackgroundStars {...props} />
 		</>
 	),
-	horizon: (props: BackgroundLayerProps) => (
+	tilt: (props: BackgroundLayerProps) => (
 		<>
 			<BackgroundWash />
-			<BackgroundPerspectiveGrid {...props} />
+			<BackgroundTiltGrid {...props} />
 		</>
 	),
 	spotlight: (props: BackgroundLayerProps) => <BackgroundSpotlight {...props} />,
@@ -396,12 +436,29 @@ const backgrounds = {
 
 type BackgroundVariant = keyof typeof backgrounds;
 
+type BackgroundOverlayProps = {
+	/** Overlay opacity — overrides the per-overlay default when set. */
+	opacity?: number;
+	/** Vignette clear-centre radius as a percentage (`vignette`). */
+	vignetteSize?: number;
+	/** Grain tile size in px (`grain`). */
+	grainScale?: number;
+	/** Scanline period in px (`scanlines`). */
+	scanlineGap?: number;
+};
+
 const overlays = {
 	none: () => null,
-	grain: () => <BackgroundGrain />,
-	vignette: () => <BackgroundVignette />,
-	scanlines: () => <BackgroundScanlines />,
-} satisfies Record<string, () => React.ReactNode>;
+	grain: (p: BackgroundOverlayProps) => (
+		<BackgroundGrain opacity={p.opacity} scale={p.grainScale} />
+	),
+	vignette: (p: BackgroundOverlayProps) => (
+		<BackgroundVignette opacity={p.opacity} size={p.vignetteSize} />
+	),
+	scanlines: (p: BackgroundOverlayProps) => (
+		<BackgroundScanlines opacity={p.opacity} gap={p.scanlineGap} />
+	),
+} satisfies Record<string, (p: BackgroundOverlayProps) => React.ReactNode>;
 
 type BackgroundOverlay = keyof typeof overlays;
 
@@ -421,6 +478,17 @@ function Background({
 	overlay = "none",
 	animated = true,
 	intensity = "default",
+	rotateX,
+	rotateY,
+	rotateZ,
+	scale,
+	cellSize,
+	lineWidth,
+	speed,
+	overlayOpacity,
+	vignetteSize,
+	grainScale,
+	scanlineGap,
 	className,
 	children,
 	...props
@@ -428,7 +496,12 @@ function Background({
 	BackgroundLayerProps & {
 		variant?: BackgroundVariant;
 		overlay?: BackgroundOverlay;
-	}) {
+		/** Overlay opacity — overrides the active overlay's default. */
+		overlayOpacity?: number;
+	} & Pick<
+		BackgroundOverlayProps,
+		"vignetteSize" | "grainScale" | "scanlineGap"
+	>) {
 	return (
 		<div
 			aria-hidden="true"
@@ -441,9 +514,24 @@ function Background({
 			)}
 			{...props}
 		>
-			{backgrounds[variant]?.({ animated, intensity })}
+			{backgrounds[variant]?.({
+				animated,
+				intensity,
+				rotateX,
+				rotateY,
+				rotateZ,
+				scale,
+				cellSize,
+				lineWidth,
+				speed,
+			})}
 			{children}
-			{overlays[overlay]?.()}
+			{overlays[overlay]?.({
+				opacity: overlayOpacity,
+				vignetteSize,
+				grainScale,
+				scanlineGap,
+			})}
 		</div>
 	);
 }
@@ -458,7 +546,7 @@ export {
 	BackgroundAurora,
 	BackgroundBeams,
 	BackgroundStars,
-	BackgroundPerspectiveGrid,
+	BackgroundTiltGrid,
 	BackgroundSpotlight,
 	BackgroundGrain,
 	BackgroundVignette,
@@ -467,5 +555,7 @@ export {
 	overlays,
 	type BackgroundVariant,
 	type BackgroundOverlay,
+	type BackgroundOverlayProps,
+	type BackgroundLayerProps,
 	type BackgroundIntensity,
 };
