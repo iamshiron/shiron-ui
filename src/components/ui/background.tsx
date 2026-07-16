@@ -170,6 +170,31 @@ function BackgroundDots({ className, ...props }: React.ComponentProps<"div">) {
 	);
 }
 
+const AURORA_OPACITY: Record<BackgroundIntensity, number> = {
+	subtle: 0.25,
+	default: 0.4,
+	vivid: 0.55,
+};
+
+/** Flowing conic-gradient aurora ribbons, slowly rotating. */
+function BackgroundAurora({
+	animated = true,
+	intensity = "default",
+}: BackgroundLayerProps) {
+	return (
+		<div
+			data-slot="background-aurora"
+			className="absolute -inset-1/2 blur-[100px]"
+			style={{
+				opacity: AURORA_OPACITY[intensity],
+				background:
+					"conic-gradient(from 0deg at 50% 40%, var(--honami-accent), var(--honami-accent-2), var(--honami-cyan), var(--honami-accent))",
+				animation: animated ? "honami-spin 40s linear infinite" : undefined,
+			}}
+		/>
+	);
+}
+
 /** Several overlapping accent blooms that drift slowly (a mesh gradient). */
 function BackgroundMesh({ animated = true }: BackgroundLayerProps) {
 	return (
@@ -224,6 +249,7 @@ const backgrounds = {
 		</>
 	),
 	mesh: (props: BackgroundLayerProps) => <BackgroundMesh {...props} />,
+	ribbons: (props: BackgroundLayerProps) => <BackgroundAurora {...props} />,
 	solid: () => null,
 } satisfies Record<string, (props: BackgroundLayerProps) => React.ReactNode>;
 
@@ -288,6 +314,7 @@ export {
 	BackgroundGrid,
 	BackgroundDots,
 	BackgroundMesh,
+	BackgroundAurora,
 	BackgroundGrain,
 	BackgroundVignette,
 	BackgroundScanlines,

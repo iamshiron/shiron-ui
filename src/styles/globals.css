@@ -365,6 +365,12 @@
 		background-position: 100% 100%;
 	}
 }
+/* Full rotation for conic aurora ribbons. */
+@keyframes honami-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
 
 .honami-caret {
 	display: inline-block;
