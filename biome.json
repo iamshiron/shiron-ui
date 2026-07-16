@@ -6,7 +6,13 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"includes": ["./src/**", "./demo/src/**", "./demo/vite.config.ts"],
+		"includes": [
+			"./src/**",
+			"./demo/src/**",
+			"./demo/vite.config.ts",
+			"./demo/.storybook/**",
+			"./demo/scripts/**"
+		],
 		"ignoreUnknown": false
 	},
 	"formatter": {

@@ -30,3 +30,4 @@ coverage/
 
 # vitest browser-mode failure screenshots
 __screenshots__/
+storybook-static/
