@@ -97,6 +97,63 @@ function BackgroundGrid({ className, ...props }: React.ComponentProps<"div">) {
 	);
 }
 
+// ── Texture overlays ────────────────────────────────────────────────
+// Modifiers that layer on top of any background via the `overlay` prop.
+
+const GRAIN_SVG =
+	"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E";
+
+/** Fine film grain — softens gradient banding and adds premium texture. */
+function BackgroundGrain({ className, ...props }: React.ComponentProps<"div">) {
+	return (
+		<div
+			data-slot="background-grain"
+			className={cn(
+				"absolute inset-0 opacity-40 mix-blend-soft-light",
+				className,
+			)}
+			style={{
+				backgroundImage: `url("${GRAIN_SVG}")`,
+				backgroundSize: "140px 140px",
+			}}
+			{...props}
+		/>
+	);
+}
+
+/** Radial edge darkening to focus the centre of the viewport. */
+function BackgroundVignette({ className, ...props }: React.ComponentProps<"div">) {
+	return (
+		<div
+			data-slot="background-vignette"
+			className={cn("absolute inset-0", className)}
+			style={{
+				background:
+					"radial-gradient(120% 100% at 50% 45%, transparent 55%, rgba(0, 0, 0, 0.45))",
+			}}
+			{...props}
+		/>
+	);
+}
+
+/** Thin horizontal CRT / terminal scanlines. */
+function BackgroundScanlines({
+	className,
+	...props
+}: React.ComponentProps<"div">) {
+	return (
+		<div
+			data-slot="background-scanlines"
+			className={cn("absolute inset-0 opacity-60", className)}
+			style={{
+				backgroundImage:
+					"repeating-linear-gradient(to bottom, transparent 0 2px, var(--honami-elev-2) 2px 3px)",
+			}}
+			{...props}
+		/>
+	);
+}
+
 // ── Named background registry ───────────────────────────────────────
 // Add a new key here (composing the primitives above, or anything else) to
 // introduce another background. `Background`'s `variant` prop and the
@@ -128,17 +185,29 @@ const backgrounds = {
 
 type BackgroundVariant = keyof typeof backgrounds;
 
+const overlays = {
+	none: () => null,
+	grain: () => <BackgroundGrain />,
+	vignette: () => <BackgroundVignette />,
+	scanlines: () => <BackgroundScanlines />,
+} satisfies Record<string, () => React.ReactNode>;
+
+type BackgroundOverlay = keyof typeof overlays;
+
 /**
  * Ambient page backdrop. Render it once — in your root layout or app shell —
  * and it fixes itself behind every page (`fixed inset-0 -z-10`,
  * `pointer-events-none`), so page content sits on top automatically.
  *
- * Pick a built-in look with `variant`, or pass custom layers as `children`
- * (they render inside the same fixed shell). The `solid` variant renders no
- * decorative layers, making it the base for a fully custom background.
+ * Pick a built-in look with `variant`, optionally layer a texture with
+ * `overlay` (grain / vignette / scanlines), or pass custom layers as
+ * `children` (they render inside the same fixed shell). The `solid` variant
+ * renders no decorative layers, making it the base for a fully custom
+ * background.
  */
 function Background({
 	variant = "atmosphere",
+	overlay = "none",
 	animated = true,
 	intensity = "default",
 	className,
@@ -147,12 +216,14 @@ function Background({
 }: React.ComponentProps<"div"> &
 	BackgroundLayerProps & {
 		variant?: BackgroundVariant;
+		overlay?: BackgroundOverlay;
 	}) {
 	return (
 		<div
 			aria-hidden="true"
 			data-slot="background"
 			data-variant={variant}
+			data-overlay={overlay}
 			className={cn(
 				"pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background",
 				className,
@@ -161,6 +232,7 @@ function Background({
 		>
 			{backgrounds[variant]?.({ animated, intensity })}
 			{children}
+			{overlays[overlay]?.()}
 		</div>
 	);
 }
@@ -170,7 +242,12 @@ export {
 	BackgroundWash,
 	BackgroundBlobs,
 	BackgroundGrid,
+	BackgroundGrain,
+	BackgroundVignette,
+	BackgroundScanlines,
 	backgrounds,
+	overlays,
 	type BackgroundVariant,
+	type BackgroundOverlay,
 	type BackgroundIntensity,
 };

@@ -75,4 +75,38 @@ describe("Background", () => {
 			Number(firstBlob(subtle.container).style.opacity),
 		);
 	});
+
+	it("layers no overlay by default", () => {
+		const { container } = render(<Background />);
+
+		expect(container.querySelector('[data-slot="background"]')).toHaveAttribute(
+			"data-overlay",
+			"none",
+		);
+		expect(container.querySelector('[data-slot="background-grain"]')).toBeNull();
+	});
+
+	it("layers the requested texture overlay on top of any variant", () => {
+		const { container } = render(<Background variant="grid" overlay="grain" />);
+
+		// The grid variant still renders, with grain layered over it.
+		expect(
+			container.querySelector('[data-slot="background-grid"]'),
+		).not.toBeNull();
+		expect(
+			container.querySelector('[data-slot="background-grain"]'),
+		).not.toBeNull();
+	});
+
+	it("supports the vignette and scanlines overlays", () => {
+		const vignette = render(<Background overlay="vignette" />);
+		expect(
+			vignette.container.querySelector('[data-slot="background-vignette"]'),
+		).not.toBeNull();
+
+		const scanlines = render(<Background overlay="scanlines" />);
+		expect(
+			scanlines.container.querySelector('[data-slot="background-scanlines"]'),
+		).not.toBeNull();
+	});
 });
