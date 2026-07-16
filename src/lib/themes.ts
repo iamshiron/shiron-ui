@@ -29,6 +29,7 @@ export const themes = [
 	{ name: "aquamarine", label: "Aquamarine", mode: "light" },
 	{ name: "carnelian", label: "Carnelian", mode: "light" },
 	{ name: "peridot", label: "Peridot", mode: "light" },
+	{ name: "opal", label: "Opal", mode: "light" },
 ] as const satisfies readonly ThemeMeta[];
 
 export type ThemeName = (typeof themes)[number]["name"];
