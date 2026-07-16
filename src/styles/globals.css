@@ -380,6 +380,16 @@
 		background-position: 280px 0;
 	}
 }
+/* Gentle twinkle for the starfield. */
+@keyframes honami-twinkle {
+	0%,
+	100% {
+		opacity: 0.35;
+	}
+	50% {
+		opacity: 0.7;
+	}
+}
 
 .honami-caret {
 	display: inline-block;

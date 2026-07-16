@@ -170,6 +170,31 @@ function BackgroundDots({ className, ...props }: React.ComponentProps<"div">) {
 	);
 }
 
+/** A field of small twinkling stars. */
+function BackgroundStars({ animated = true }: BackgroundLayerProps) {
+	return (
+		<div
+			data-slot="background-stars"
+			className="absolute inset-0"
+			style={{
+				backgroundImage: [
+					"radial-gradient(1px 1px at 20px 30px, var(--foreground), transparent)",
+					"radial-gradient(1px 1px at 90px 50px, var(--foreground), transparent)",
+					"radial-gradient(1px 1px at 130px 120px, var(--foreground), transparent)",
+					"radial-gradient(1.5px 1.5px at 50px 160px, var(--foreground), transparent)",
+					"radial-gradient(1px 1px at 170px 90px, var(--foreground), transparent)",
+					"radial-gradient(1px 1px at 110px 20px, var(--foreground), transparent)",
+				].join(", "),
+				backgroundSize: "200px 200px",
+				opacity: 0.5,
+				animation: animated
+					? "honami-twinkle 4s ease-in-out infinite"
+					: undefined,
+			}}
+		/>
+	);
+}
+
 /** Angled light shafts sweeping from the top, faded with a radial mask. */
 function BackgroundBeams({ animated = true }: BackgroundLayerProps) {
 	const mask = "radial-gradient(70% 60% at 50% 0%, black, transparent 75%)";
@@ -276,6 +301,12 @@ const backgrounds = {
 			<BackgroundBeams {...props} />
 		</>
 	),
+	starfield: (props: BackgroundLayerProps) => (
+		<>
+			<BackgroundWash />
+			<BackgroundStars {...props} />
+		</>
+	),
 	solid: () => null,
 } satisfies Record<string, (props: BackgroundLayerProps) => React.ReactNode>;
 
@@ -342,6 +373,7 @@ export {
 	BackgroundMesh,
 	BackgroundAurora,
 	BackgroundBeams,
+	BackgroundStars,
 	BackgroundGrain,
 	BackgroundVignette,
 	BackgroundScanlines,
