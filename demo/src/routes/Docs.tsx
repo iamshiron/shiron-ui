@@ -45,7 +45,7 @@ packages:
 	peers: `pnpm add radix-ui @base-ui/react class-variance-authority clsx \\
   tailwind-merge tw-animate-css cmdk vaul embla-carousel-react \\
   react-resizable-panels react-day-picker input-otp recharts sonner \\
-  next-themes @solar-icons/react@2.0.0-beta.0 \\
+  next-themes @solar-icons/react@2.0.0-beta.2 \\
   @fontsource-variable/fredoka @fontsource-variable/azeret-mono
 
 pnpm add -D tailwindcss @tailwindcss/vite`,
@@ -167,7 +167,9 @@ export function DocsPage() {
 			<Section id="peers" title="2. Install peer dependencies">
 				<p className="text-muted-foreground text-sm">
 					The library imports these directly; your app must provide them. Icons
-					use Solar v2 (pinned to the attribute-sized <code>beta.0</code>).
+					use Solar v2 (<code>beta.2</code>), which sizes every icon from the{" "}
+					<code>--solar-size</code> CSS variable (set once in your stylesheet,
+					below).
 				</p>
 				<CodeBlock lang="bash" code={SNIPPETS.peers} />
 			</Section>

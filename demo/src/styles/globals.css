@@ -9,11 +9,11 @@
    too — otherwise their utility classes never get generated. */
 @source "../../../src/components";
 
-/* Solar v2 icons read their size from --solar-size (their width/height is a
-   var()); set a sane default for bare icons. Components that size icons via
-   `[&_svg]:size-*` still win. */
+/* Solar v2 (beta.2) sizes icons from --solar-size — their width/height is an
+   inline `var(--solar-size, 24px)`, which overrides utility classes — so this
+   is the single lever for icon size across the app. */
 :root {
-	--solar-size: 1rem;
+	--solar-size: 0.9rem;
 }
 
 html,
