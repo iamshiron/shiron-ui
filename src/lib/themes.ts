@@ -20,6 +20,15 @@ export type ThemeMeta = {
 export const themes = [
 	{ name: "amethyst", label: "Amethyst", mode: "dark" },
 	{ name: "jasper", label: "Jasper", mode: "light" },
+	{ name: "onyx", label: "Onyx", mode: "dark" },
+	{ name: "sapphire", label: "Sapphire", mode: "dark" },
+	{ name: "ruby", label: "Ruby", mode: "dark" },
+	{ name: "topaz", label: "Topaz", mode: "dark" },
+	{ name: "jade", label: "Jade", mode: "dark" },
+	{ name: "amber", label: "Amber", mode: "light" },
+	{ name: "aquamarine", label: "Aquamarine", mode: "light" },
+	{ name: "carnelian", label: "Carnelian", mode: "light" },
+	{ name: "peridot", label: "Peridot", mode: "light" },
 ] as const satisfies readonly ThemeMeta[];
 
 export type ThemeName = (typeof themes)[number]["name"];
