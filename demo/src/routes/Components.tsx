@@ -1,32 +1,17 @@
 import { cn } from "@shiron/ui/lib/utils";
-import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router";
 import { DemoStage } from "@/components/DemoStage";
 import { allDemos, findDemo, registry } from "@/registry";
 
 export function ComponentsPage() {
-	const [selectedId, setSelectedId] = useState<string>(() => {
-		const hash = window.location.hash.replace(/^#/, "");
-		return findDemo(hash)?.id ?? allDemos[0]?.id ?? "";
-	});
+	const location = useLocation();
+	const navigate = useNavigate();
 
-	const demo = findDemo(selectedId) ?? allDemos[0];
-
-	useEffect(() => {
-		if (demo) {
-			window.history.replaceState(null, "", `#${demo.id}`);
-		}
-	}, [demo]);
-
-	useEffect(() => {
-		const onHashChange = () => {
-			const id = window.location.hash.replace(/^#/, "");
-			if (findDemo(id)) {
-				setSelectedId(id);
-			}
-		};
-		window.addEventListener("hashchange", onHashChange);
-		return () => window.removeEventListener("hashchange", onHashChange);
-	}, []);
+	// The selected component lives entirely in the URL hash (#button), so
+	// sidebar clicks and the header search share one source of truth and every
+	// selection is a shareable deep link.
+	const hashId = decodeURIComponent(location.hash.replace(/^#/, ""));
+	const demo = findDemo(hashId) ?? allDemos[0];
 
 	return (
 		<div className="flex flex-col gap-8 lg:grid lg:grid-cols-[13rem_1fr] lg:gap-10">
@@ -41,7 +26,7 @@ export function ComponentsPage() {
 								<button
 									key={d.id}
 									type="button"
-									onClick={() => setSelectedId(d.id)}
+									onClick={() => navigate(`#${d.id}`)}
 									className={cn(
 										"rounded-md px-2 py-1.5 text-left text-sm transition-colors",
 										d.id === demo?.id

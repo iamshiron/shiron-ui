@@ -23,7 +23,10 @@ const THEMES = [
 ];
 
 const BASE = process.env.SCREENSHOT_BASE ?? "http://localhost:4400";
-const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+const repoRoot = path.resolve(
+	path.dirname(fileURLToPath(import.meta.url)),
+	"../..",
+);
 const OUT = path.join(repoRoot, "assets/screenshots");
 
 const browser = await chromium.launch();

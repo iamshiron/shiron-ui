@@ -8,7 +8,6 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@shiron/ui/components/ui/card";
-import { GradientText } from "@shiron/ui/components/ui/gradient-text";
 import { Label } from "@shiron/ui/components/ui/label";
 import { Progress } from "@shiron/ui/components/ui/progress";
 import {
@@ -55,7 +54,8 @@ export function HomePage() {
 			<section className="grid items-center gap-10 pt-6 lg:grid-cols-2">
 				<div className="flex min-w-0 flex-col gap-6">
 					<h1 className="font-heading font-semibold text-4xl leading-[1.1] tracking-tight sm:text-5xl">
-						A component set with a <GradientText>Neo-Tokyo</GradientText> look.
+						A component set with a{" "}
+						<span className="text-primary">Neo-Tokyo</span> look.
 					</h1>
 					<p className="max-w-prose text-base text-muted-foreground leading-relaxed">
 						{site.name} is a source-only React 19 + Tailwind v4 library built on
@@ -81,7 +81,7 @@ export function HomePage() {
 						{builtOn.map((item, i) => (
 							<span key={item.name}>
 								<a
-									className="text-foreground/80 underline-offset-4 hover:underline"
+									className="font-medium text-primary underline decoration-primary/40 underline-offset-4 transition-colors hover:decoration-primary"
 									href={item.href}
 									target="_blank"
 									rel="noreferrer"

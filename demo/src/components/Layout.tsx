@@ -6,6 +6,7 @@ import { useTheme } from "@shiron/ui/hooks/use-theme";
 import { getTheme } from "@shiron/ui/lib/themes";
 import { cn } from "@shiron/ui/lib/utils";
 import { NavLink, Outlet } from "react-router";
+import { ComponentSearch } from "@/components/ComponentSearch";
 import { site } from "@/lib/site";
 
 const NAV = [
@@ -47,14 +48,15 @@ export function Layout() {
 
 	return (
 		<div className="relative flex min-h-screen flex-col">
-			<Background variant="atmosphere" intensity="subtle" />
+			<Background
+				variant="atmosphere"
+				intensity="subtle"
+				className="opacity-80 blur-[1px]"
+			/>
 
 			<header className="sticky top-0 z-40 border-border/60 border-b bg-background/70 backdrop-blur-xl">
 				<div className="mx-auto flex h-14 w-full max-w-6xl items-center gap-4 px-4 sm:px-6">
 					<NavLink to="/" className="flex items-center gap-2">
-						<span className="grid size-6 place-items-center rounded-md honami-grad font-bold text-background text-sm">
-							S
-						</span>
 						<span className="font-heading font-semibold text-base tracking-tight">
 							shiron/ui
 						</span>
@@ -67,6 +69,7 @@ export function Layout() {
 					</nav>
 
 					<div className="ml-auto flex items-center gap-2">
+						<ComponentSearch />
 						<Button asChild variant="outline" size="sm">
 							<a href={site.storybook} target="_blank" rel="noreferrer">
 								Storybook

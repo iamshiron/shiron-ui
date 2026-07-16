@@ -41,6 +41,20 @@ export function DemoStage({ demo }: { demo: Demo }) {
 			</div>
 
 			<CodeBlock code={demo.code(active)} lang="tsx" />
+
+			{demo.keywords && demo.keywords.length > 0 ? (
+				<div className="flex flex-wrap items-center gap-1.5 border-border/60 border-t pt-4 text-muted-foreground text-xs">
+					<span className="mr-1">Also known as</span>
+					{demo.keywords.map((keyword) => (
+						<span
+							key={keyword}
+							className="rounded-full bg-foreground/5 px-2 py-0.5"
+						>
+							{keyword}
+						</span>
+					))}
+				</div>
+			) : null}
 		</div>
 	);
 }

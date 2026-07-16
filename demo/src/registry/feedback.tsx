@@ -162,11 +162,13 @@ export const feedbackGroup: DemoGroup = {
 			render: () => (
 				<ScrollArea className="h-48 w-full max-w-md rounded-lg border p-4">
 					<div className="flex flex-col gap-2">
-						{Array.from({ length: 20 }, (_, i) => (
-							<div key={i} className="text-sm">
-								Row {i + 1}
-							</div>
-						))}
+						{Array.from({ length: 20 }, (_, i) => `Row ${i + 1}`).map(
+							(label) => (
+								<div key={label} className="text-sm">
+									{label}
+								</div>
+							),
+						)}
 					</div>
 				</ScrollArea>
 			),

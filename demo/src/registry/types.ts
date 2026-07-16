@@ -26,6 +26,8 @@ export type Demo = {
 	render: (variant: string) => ReactNode;
 	/** The code sample for the active variant. */
 	code: (variant: string) => string;
+	/** Search aliases (also shown on the component page). Filled from KEYWORDS. */
+	keywords?: string[];
 };
 
 /** A named group of demos shown as a section in the sidebar. */

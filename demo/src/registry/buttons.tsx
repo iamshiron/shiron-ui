@@ -1,9 +1,6 @@
 import { Badge } from "@shiron/ui/components/ui/badge";
 import { Button } from "@shiron/ui/components/ui/button";
-import {
-	ButtonGroup,
-	ButtonGroupSeparator,
-} from "@shiron/ui/components/ui/button-group";
+import { ButtonGroup } from "@shiron/ui/components/ui/button-group";
 import { Kbd, KbdGroup } from "@shiron/ui/components/ui/kbd";
 import { Toggle } from "@shiron/ui/components/ui/toggle";
 import {
@@ -57,14 +54,12 @@ export const buttonsGroup: DemoGroup = {
 				<ButtonGroup>
 					<Button variant="outline">Copy</Button>
 					<Button variant="outline">Paste</Button>
-					<ButtonGroupSeparator />
 					<Button variant="outline">Delete</Button>
 				</ButtonGroup>
 			),
 			code: () => `<ButtonGroup>
   <Button variant="outline">Copy</Button>
   <Button variant="outline">Paste</Button>
-  <ButtonGroupSeparator />
   <Button variant="outline">Delete</Button>
 </ButtonGroup>`,
 		},
