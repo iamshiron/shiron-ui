@@ -1,16 +1,9 @@
 import { cn } from "@shiron/ui/lib/utils";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { Loading03Icon } from "@hugeicons/core-free-icons";
+import { RefreshLinearIcon } from "@solar-icons/react";
 
-function Spinner({
-	className,
-	strokeWidth = 2,
-	...props
-}: React.ComponentProps<"svg">) {
+function Spinner({ className, ...props }: React.ComponentProps<"svg">) {
 	return (
-		<HugeiconsIcon
-			icon={Loading03Icon}
-			strokeWidth={strokeWidth as number}
+		<RefreshLinearIcon
 			role="status"
 			aria-label="Loading"
 			className={cn("size-4 animate-spin", className)}

@@ -2,8 +2,10 @@ import type * as React from "react";
 import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
 
 import { cn } from "@shiron/ui/lib/utils";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowRight01Icon, Tick02Icon } from "@hugeicons/core-free-icons";
+import {
+	AltArrowRightLinearIcon,
+	CheckCircleLinearIcon,
+} from "@solar-icons/react";
 
 function ContextMenu({
 	...props
@@ -119,11 +121,7 @@ function ContextMenuSubTrigger({
 			{...props}
 		>
 			{children}
-			<HugeiconsIcon
-				icon={ArrowRight01Icon}
-				strokeWidth={2}
-				className="ml-auto"
-			/>
+			<AltArrowRightLinearIcon className="ml-auto" />
 		</ContextMenuPrimitive.SubTrigger>
 	);
 }
@@ -166,7 +164,7 @@ function ContextMenuCheckboxItem({
 		>
 			<span className="pointer-events-none absolute right-2 flex items-center justify-center">
 				<ContextMenuPrimitive.ItemIndicator>
-					<HugeiconsIcon icon={Tick02Icon} strokeWidth={2} />
+					<CheckCircleLinearIcon />
 				</ContextMenuPrimitive.ItemIndicator>
 			</span>
 			{children}
@@ -194,7 +192,7 @@ function ContextMenuRadioItem({
 		>
 			<span className="pointer-events-none absolute right-2 flex items-center justify-center">
 				<ContextMenuPrimitive.ItemIndicator>
-					<HugeiconsIcon icon={Tick02Icon} strokeWidth={2} />
+					<CheckCircleLinearIcon />
 				</ContextMenuPrimitive.ItemIndicator>
 			</span>
 			{children}

@@ -10,12 +10,11 @@ import {
 
 import { cn } from "@shiron/ui/lib/utils";
 import { Button, buttonVariants } from "@shiron/ui/components/ui/button";
-import { HugeiconsIcon } from "@hugeicons/react";
 import {
-	ArrowLeftIcon,
-	ArrowRightIcon,
-	ArrowDownIcon,
-} from "@hugeicons/core-free-icons";
+	AltArrowDownLinearIcon,
+	AltArrowLeftLinearIcon,
+	AltArrowRightLinearIcon,
+} from "@solar-icons/react";
 
 function Calendar({
 	className,
@@ -152,9 +151,7 @@ function Calendar({
 				Chevron: ({ className, orientation, ...props }) => {
 					if (orientation === "left") {
 						return (
-							<HugeiconsIcon
-								icon={ArrowLeftIcon}
-								strokeWidth={2}
+							<AltArrowLeftLinearIcon
 								className={cn("size-4", className)}
 								{...props}
 							/>
@@ -163,9 +160,7 @@ function Calendar({
 
 					if (orientation === "right") {
 						return (
-							<HugeiconsIcon
-								icon={ArrowRightIcon}
-								strokeWidth={2}
+							<AltArrowRightLinearIcon
 								className={cn("size-4", className)}
 								{...props}
 							/>
@@ -173,9 +168,7 @@ function Calendar({
 					}
 
 					return (
-						<HugeiconsIcon
-							icon={ArrowDownIcon}
-							strokeWidth={2}
+						<AltArrowDownLinearIcon
 							className={cn("size-4", className)}
 							{...props}
 						/>

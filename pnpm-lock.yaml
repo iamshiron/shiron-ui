@@ -14,12 +14,9 @@ importers:
       '@biomejs/biome':
         specifier: ^2.5.4
         version: 2.5.4
-      '@hugeicons/core-free-icons':
-        specifier: ^4.2.2
-        version: 4.2.2
-      '@hugeicons/react':
-        specifier: ^1.1.9
-        version: 1.1.9(react@19.2.7)
+      '@solar-icons/react':
+        specifier: ^2.0.0-beta.0
+        version: 2.0.0-beta.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@tailwindcss/vite':
         specifier: ~4.3.2
         version: 4.3.2(vite@7.3.6(jiti@2.7.0)(lightningcss@1.32.0))
@@ -507,14 +504,6 @@ packages:
 
   '@floating-ui/utils@0.2.12':
     resolution: {integrity: sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww==}
-
-  '@hugeicons/core-free-icons@4.2.2':
-    resolution: {integrity: sha512-fjQW3p6cwoJmwK3oCnV8Z3PC5sHihDvr2jkAHax8cxqp62GaV/D7B/Rnao+JwicW8fmLZUQ6QrzWfoyMFOEQlQ==}
-
-  '@hugeicons/react@1.1.9':
-    resolution: {integrity: sha512-O+lWSWjbijoAvMCxn4K2bQWCGN5+mP1y5j+X99j23mXMj+s0X25fs71T6t9YJLaBodwmZdaewD27dzS/PiboQw==}
-    peerDependencies:
-      react: '>=16.0.0'
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -1376,6 +1365,13 @@ packages:
     resolution: {integrity: sha512-BfzEnDJOt9T8M989/lA37EcJgat01wLRnoi5dQf3QzOH7jzpqTAzdDbVfRljVr5r+jzKqpbHeyOfAaXxAd0PAA==}
     cpu: [x64]
     os: [win32]
+
+  '@solar-icons/react@2.0.0-beta.0':
+    resolution: {integrity: sha512-fJ9thdy4g2WRNu/SgsE7vVq1nVj9EnyzGgdI1F+WyM/gDGpdR+6bBWEmDCoK6aZ+wIZPDL5ibCIgFvptBv/6uQ==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      react: '>= 16.8'
+      react-dom: '>= 16.8'
 
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
@@ -2850,12 +2846,6 @@ snapshots:
 
   '@floating-ui/utils@0.2.12': {}
 
-  '@hugeicons/core-free-icons@4.2.2': {}
-
-  '@hugeicons/react@1.1.9(react@19.2.7)':
-    dependencies:
-      react: 19.2.7
-
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
@@ -3711,6 +3701,11 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.62.2':
     optional: true
+
+  '@solar-icons/react@2.0.0-beta.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
+    dependencies:
+      react: 19.2.7
+      react-dom: 19.2.7(react@19.2.7)
 
   '@standard-schema/spec@1.1.0': {}
 

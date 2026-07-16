@@ -5,8 +5,7 @@ import { Dialog as DialogPrimitive } from "radix-ui";
 
 import { cn } from "@shiron/ui/lib/utils";
 import { Button } from "@shiron/ui/components/ui/button";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { Cancel01Icon } from "@hugeicons/core-free-icons";
+import { CloseCircleLinearIcon } from "@solar-icons/react";
 
 function Dialog({
 	...props
@@ -75,7 +74,7 @@ function DialogContent({
 							className="absolute top-2 right-2"
 							size="icon-sm"
 						>
-							<HugeiconsIcon icon={Cancel01Icon} strokeWidth={2} />
+							<CloseCircleLinearIcon />
 							<span className="sr-only">Close</span>
 						</Button>
 					</DialogPrimitive.Close>

@@ -4,8 +4,10 @@ import type * as React from "react";
 import { Menubar as MenubarPrimitive } from "radix-ui";
 
 import { cn } from "@shiron/ui/lib/utils";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { Tick02Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
+import {
+	AltArrowRightLinearIcon,
+	CheckCircleLinearIcon,
+} from "@solar-icons/react";
 
 function Menubar({
 	className,
@@ -131,7 +133,7 @@ function MenubarCheckboxItem({
 		>
 			<span className="pointer-events-none absolute left-2 flex size-4 items-center justify-center [&_svg:not([class*='size-'])]:size-4">
 				<MenubarPrimitive.ItemIndicator>
-					<HugeiconsIcon icon={Tick02Icon} strokeWidth={2} />
+					<CheckCircleLinearIcon />
 				</MenubarPrimitive.ItemIndicator>
 			</span>
 			{children}
@@ -159,7 +161,7 @@ function MenubarRadioItem({
 		>
 			<span className="pointer-events-none absolute left-2 flex size-4 items-center justify-center [&_svg:not([class*='size-'])]:size-4">
 				<MenubarPrimitive.ItemIndicator>
-					<HugeiconsIcon icon={Tick02Icon} strokeWidth={2} />
+					<CheckCircleLinearIcon />
 				</MenubarPrimitive.ItemIndicator>
 			</span>
 			{children}
@@ -241,11 +243,7 @@ function MenubarSubTrigger({
 			{...props}
 		>
 			{children}
-			<HugeiconsIcon
-				icon={ArrowRight01Icon}
-				strokeWidth={2}
-				className="ml-auto size-4"
-			/>
+			<AltArrowRightLinearIcon className="ml-auto size-4" />
 		</MenubarPrimitive.SubTrigger>
 	);
 }
