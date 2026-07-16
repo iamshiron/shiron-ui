@@ -1,74 +1,130 @@
 # @shiron/ui
 
-A React 19 component library built on [shadcn/ui](https://ui.shadcn.com) (radix-mira style), [Radix UI](https://radix-ui.com), [Base UI](https://base-ui.com), and [Tailwind CSS v4](https://tailwindcss.com). Designed for consumption as a workspace package or git submodule.
+A source-only React 19 + Tailwind CSS v4 component library — a "Neo-Tokyo at
+Night" take on [shadcn/ui](https://ui.shadcn.com): muted-mauve surfaces,
+glassmorphism, gradient accents and twelve named themes, all driven by one
+design-token layer.
 
-## Requirements
+**[Live demo →](https://iamshiron.github.io/shiron-ui/)** ·
+**[Storybook →](https://iamshiron.github.io/shiron-ui/storybook/)**
 
-This is a **source-only** library (no build step). Consumers must provide all peer dependencies:
+> Source-only, no published package yet — you consume the TypeScript source as a
+> git submodule and let your own Vite + Tailwind pipeline compile it. A proper
+> npm package will follow.
 
-- **React 19** (`react`, `react-dom`)
-- **Tailwind CSS v4** with the theme tokens defined in [`src/styles/globals.css`](src/styles/globals.css)
-- **Styling primitives:** `clsx`, `tailwind-merge`, `class-variance-authority`, `tw-animate-css`
-- **Component primitives:** `radix-ui`, `@base-ui/react`, `cmdk`, `vaul`, `embla-carousel-react`, `react-resizable-panels`, `react-day-picker`, `input-otp`, `recharts`, `sonner`, `next-themes`
-- **Icons (optional):** `@hugeicons/react` + `@hugeicons/core-free-icons` — required only if you use icon-bearing components
+## Themes
 
-See [`package.json`](package.json) for the full version matrix.
+Twelve themes across six accents, each with a light and dark variant. Switch by
+setting `data-theme` on the root, or use the provider-less `useTheme` hook.
 
-## Installation
+| Dark | Light | Accent |
+| --- | --- | --- |
+| Amethyst | Jasper | Purple |
+| Onyx | Opal | Neutral |
+| Sapphire | Aquamarine | Blue |
+| Ruby | Carnelian | Red |
+| Topaz | Amber | Orange |
+| Jade | Peridot | Green |
 
-### As a git submodule
+| | |
+| --- | --- |
+| ![Amethyst](assets/screenshots/amethyst.png) Amethyst | ![Jasper](assets/screenshots/jasper.png) Jasper |
+| ![Sapphire](assets/screenshots/sapphire.png) Sapphire | ![Aquamarine](assets/screenshots/aquamarine.png) Aquamarine |
+| ![Ruby](assets/screenshots/ruby.png) Ruby | ![Carnelian](assets/screenshots/carnelian.png) Carnelian |
+| ![Jade](assets/screenshots/jade.png) Jade | ![Peridot](assets/screenshots/peridot.png) Peridot |
+| ![Topaz](assets/screenshots/topaz.png) Topaz | ![Amber](assets/screenshots/amber.png) Amber |
+| ![Onyx](assets/screenshots/onyx.png) Onyx | ![Opal](assets/screenshots/opal.png) Opal |
+
+## Built on
+
+[shadcn/ui](https://ui.shadcn.com) · [Radix UI](https://www.radix-ui.com) ·
+[Base UI](https://base-ui.com) · [Tailwind CSS v4](https://tailwindcss.com) ·
+[Solar Icons](https://solar-icons.vercel.app) ·
+[Recharts](https://recharts.org) · plus cmdk, vaul, embla, react-day-picker,
+input-otp, sonner and next-themes.
+
+## Quickstart
+
+**1. Vendor it as a submodule** and wire it into your pnpm workspace:
 
 ```bash
 git submodule add https://github.com/iamshiron/shiron-ui.git packages/ui
 ```
 
-Then reference it in your workspace (pnpm):
-
-```jsonc
-// pnpm-workspace.yaml
+```yaml
+# pnpm-workspace.yaml
 packages:
+  - "apps/*"
   - "packages/*"
 ```
 
 ```jsonc
-// consuming app's package.json
-"dependencies": {
-  "@shiron/ui": "workspace:*"
-}
+// your app's package.json
+{ "dependencies": { "@shiron/ui": "workspace:*" } }
 ```
 
-### Direct dependency
+**2. Install the peer dependencies** the library imports:
+
+```bash
+pnpm add radix-ui @base-ui/react class-variance-authority clsx \
+  tailwind-merge tw-animate-css cmdk vaul embla-carousel-react \
+  react-resizable-panels react-day-picker input-otp recharts sonner \
+  next-themes @solar-icons/react@2.0.0-beta.2 \
+  @fontsource-variable/fredoka @fontsource-variable/azeret-mono
+pnpm add -D tailwindcss @tailwindcss/vite
+```
+
+**3. Alias the source** in Vite and TypeScript:
+
+```ts
+// vite.config.ts
+resolve: {
+  alias: { "@shiron/ui": path.resolve(__dirname, "../../packages/ui/src") },
+}
+```
 
 ```jsonc
-"dependencies": {
-  "@shiron/ui": "github:iamshiron/shiron-ui"
-}
+// tsconfig.json
+"paths": { "@shiron/ui/*": ["../../packages/ui/src/*"] }
 ```
 
-## Usage
+**4. Wire the stylesheet** (import once from your entry file):
 
-Components are imported via the `@shiron/ui` scope:
+```css
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource-variable/fredoka";
+@import "@fontsource-variable/azeret-mono";
+@import "@shiron/ui/styles/globals.css";
+
+/* Point Tailwind at the components so their classes get generated. */
+@source "../../../../packages/ui/src/components";
+
+/* Solar v2 sizes icons from this variable. */
+:root { --solar-size: 0.9rem; }
+```
+
+**5. Use it:**
 
 ```tsx
 import { Button } from "@shiron/ui/components/ui/button";
-import { Dialog, DialogContent } from "@shiron/ui/components/ui/dialog";
-import { cn } from "@shiron/ui/lib/utils";
+
+export function Example() {
+  return <Button>Click me</Button>;
+}
 ```
 
-Import the global styles once in your app entry (defines theme tokens + base layer):
+The [Docs page](https://iamshiron.github.io/shiron-ui/docs) walks through the
+same steps with more detail.
 
-```ts
-import "@shiron/ui/styles/globals.css";
+## Development
+
+```bash
+pnpm install
+pnpm demo:dev          # run the demo/docs site
+pnpm -C demo storybook # run Storybook
+pnpm test              # component + CSS-integrity tests
 ```
-
-## Components
-
-accordion, alert, alert-dialog, aspect-ratio, avatar, badge, breadcrumb, button, button-group, calendar, card, carousel, chart, checkbox, collapsible, combobox, command, context-menu, dialog, direction, drawer, dropdown-menu, empty, field, hover-card, input, input-group, input-otp, item, kbd, label, menubar, native-select, navigation-menu, pagination, popover, progress, radio-group, resizable, scroll-area, select, separator, sheet, sidebar, skeleton, slider, sonner, spinner, switch, table, tabs, textarea, toggle, toggle-group, tooltip
-
-## Tooling
-
-- **Biome** — linting & formatting (`pnpm lint`, `pnpm format`)
-- **TypeScript** — strict, source-only (`tsc --noEmit`)
 
 ## License
 
