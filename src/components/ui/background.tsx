@@ -170,6 +170,43 @@ function BackgroundDots({ className, ...props }: React.ComponentProps<"div">) {
 	);
 }
 
+/** A synthwave floor grid receding to a glowing horizon. */
+function BackgroundPerspectiveGrid({ animated = true }: BackgroundLayerProps) {
+	const floorMask = "linear-gradient(to bottom, transparent, black 55%)";
+	return (
+		<div data-slot="background-horizon" className="absolute inset-0">
+			{/* horizon glow line at the vanishing point */}
+			<div
+				className="absolute inset-x-0 top-1/2 h-px"
+				style={{
+					background: "var(--honami-accent)",
+					boxShadow: "0 0 90px 24px var(--honami-accent-soft)",
+				}}
+			/>
+			{/* receding floor */}
+			<div
+				className="absolute inset-x-0 top-1/2 bottom-0 [perspective:320px]"
+				aria-hidden="true"
+			>
+				<div
+					className="absolute inset-0 origin-top"
+					style={{
+						transform: "rotateX(70deg)",
+						backgroundImage:
+							"linear-gradient(var(--honami-accent-line) 1px, transparent 1px), linear-gradient(90deg, var(--honami-accent-line) 1px, transparent 1px)",
+						backgroundSize: "40px 40px",
+						maskImage: floorMask,
+						WebkitMaskImage: floorMask,
+						animation: animated
+							? "honami-floor 6s linear infinite"
+							: undefined,
+					}}
+				/>
+			</div>
+		</div>
+	);
+}
+
 /** A field of small twinkling stars. */
 function BackgroundStars({ animated = true }: BackgroundLayerProps) {
 	return (
@@ -307,6 +344,12 @@ const backgrounds = {
 			<BackgroundStars {...props} />
 		</>
 	),
+	horizon: (props: BackgroundLayerProps) => (
+		<>
+			<BackgroundWash />
+			<BackgroundPerspectiveGrid {...props} />
+		</>
+	),
 	solid: () => null,
 } satisfies Record<string, (props: BackgroundLayerProps) => React.ReactNode>;
 
@@ -374,6 +417,7 @@ export {
 	BackgroundAurora,
 	BackgroundBeams,
 	BackgroundStars,
+	BackgroundPerspectiveGrid,
 	BackgroundGrain,
 	BackgroundVignette,
 	BackgroundScanlines,
