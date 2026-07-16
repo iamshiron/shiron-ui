@@ -61,7 +61,7 @@ function ThemeSelect({
 				<Swatch color={getTheme(theme)?.swatch ?? "transparent"} />
 				<SelectValue />
 			</SelectTrigger>
-			<SelectContent>
+			<SelectContent position="popper">
 				{MODES.map(({ mode, label }) => (
 					<SelectGroup key={mode}>
 						<SelectLabel>{label}</SelectLabel>
