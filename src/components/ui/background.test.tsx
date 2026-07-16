@@ -1,6 +1,10 @@
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { Background } from "@shiron/ui/components/ui/background";
+import {
+	Background,
+	backgrounds,
+	type BackgroundVariant,
+} from "@shiron/ui/components/ui/background";
 
 function firstBlob(container: HTMLElement): HTMLElement {
 	const blob = container.querySelector<HTMLElement>(
@@ -109,4 +113,17 @@ describe("Background", () => {
 			scanlines.container.querySelector('[data-slot="background-scanlines"]'),
 		).not.toBeNull();
 	});
+});
+
+describe("Background registry", () => {
+	// Every registered variant must render without crashing and tag its shell,
+	// so newly-added presets are covered automatically.
+	for (const variant of Object.keys(backgrounds) as BackgroundVariant[]) {
+		it(`renders the "${variant}" variant`, () => {
+			const { container } = render(<Background variant={variant} />);
+			expect(
+				container.querySelector('[data-slot="background"]'),
+			).toHaveAttribute("data-variant", variant);
+		});
+	}
 });

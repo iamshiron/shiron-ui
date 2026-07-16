@@ -154,6 +154,22 @@ function BackgroundScanlines({
 	);
 }
 
+/** Faint dotted texture — quieter than a line grid. */
+function BackgroundDots({ className, ...props }: React.ComponentProps<"div">) {
+	return (
+		<div
+			data-slot="background-dots"
+			className={cn("absolute inset-0 opacity-70", className)}
+			style={{
+				backgroundImage:
+					"radial-gradient(var(--honami-glass-brd) 1px, transparent 1px)",
+				backgroundSize: "22px 22px",
+			}}
+			{...props}
+		/>
+	);
+}
+
 // ── Named background registry ───────────────────────────────────────
 // Add a new key here (composing the primitives above, or anything else) to
 // introduce another background. `Background`'s `variant` prop and the
@@ -178,6 +194,12 @@ const backgrounds = {
 		<>
 			<BackgroundWash />
 			<BackgroundGrid />
+		</>
+	),
+	dots: () => (
+		<>
+			<BackgroundWash />
+			<BackgroundDots />
 		</>
 	),
 	solid: () => null,
@@ -242,6 +264,7 @@ export {
 	BackgroundWash,
 	BackgroundBlobs,
 	BackgroundGrid,
+	BackgroundDots,
 	BackgroundGrain,
 	BackgroundVignette,
 	BackgroundScanlines,
