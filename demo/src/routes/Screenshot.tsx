@@ -23,7 +23,7 @@ export function ScreenshotPage() {
 	}, [theme]);
 
 	return (
-		<div className="relative grid min-h-screen place-items-center overflow-hidden bg-background p-10">
+		<div className="relative grid min-h-screen place-items-center overflow-hidden bg-background p-8">
 			<Background variant="atmosphere" intensity="subtle" />
 			<div className="relative z-10">
 				<EssentialsShowcase />

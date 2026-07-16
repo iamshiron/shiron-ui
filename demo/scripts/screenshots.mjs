@@ -31,7 +31,8 @@ const OUT = path.join(repoRoot, "assets/screenshots");
 
 const browser = await chromium.launch();
 const page = await browser.newPage({
-	viewport: { width: 820, height: 680 },
+	// Sized to frame the card (~448x320) with a small, even margin.
+	viewport: { width: 520, height: 392 },
 	deviceScaleFactor: 2,
 });
 await mkdir(OUT, { recursive: true });
