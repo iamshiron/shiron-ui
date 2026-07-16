@@ -170,6 +170,27 @@ function BackgroundDots({ className, ...props }: React.ComponentProps<"div">) {
 	);
 }
 
+/** Several overlapping accent blooms that drift slowly (a mesh gradient). */
+function BackgroundMesh({ animated = true }: BackgroundLayerProps) {
+	return (
+		<div
+			data-slot="background-mesh"
+			className="absolute inset-0"
+			style={{
+				background: [
+					"radial-gradient(40% 40% at 15% 20%, var(--honami-accent-soft), transparent 70%)",
+					"radial-gradient(45% 45% at 85% 25%, color-mix(in oklab, var(--honami-accent-2) 22%, transparent), transparent 70%)",
+					"radial-gradient(50% 50% at 50% 95%, color-mix(in oklab, var(--honami-cyan) 18%, transparent), transparent 70%)",
+				].join(", "),
+				backgroundSize: "200% 200%",
+				animation: animated
+					? "honami-mesh 24s ease-in-out infinite"
+					: undefined,
+			}}
+		/>
+	);
+}
+
 // ── Named background registry ───────────────────────────────────────
 // Add a new key here (composing the primitives above, or anything else) to
 // introduce another background. `Background`'s `variant` prop and the
@@ -202,6 +223,7 @@ const backgrounds = {
 			<BackgroundDots />
 		</>
 	),
+	mesh: (props: BackgroundLayerProps) => <BackgroundMesh {...props} />,
 	solid: () => null,
 } satisfies Record<string, (props: BackgroundLayerProps) => React.ReactNode>;
 
@@ -265,6 +287,7 @@ export {
 	BackgroundBlobs,
 	BackgroundGrid,
 	BackgroundDots,
+	BackgroundMesh,
 	BackgroundGrain,
 	BackgroundVignette,
 	BackgroundScanlines,

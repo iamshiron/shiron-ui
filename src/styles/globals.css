@@ -355,6 +355,16 @@
 		transform: translate(0, 0) scale(1);
 	}
 }
+/* Slow position drift for mesh-gradient backgrounds. */
+@keyframes honami-mesh {
+	0%,
+	100% {
+		background-position: 0% 0%;
+	}
+	50% {
+		background-position: 100% 100%;
+	}
+}
 
 .honami-caret {
 	display: inline-block;
