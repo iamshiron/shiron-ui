@@ -1,14 +1,13 @@
-import * as React from "react";
-import useEmblaCarousel, {
-	type UseEmblaCarouselType,
-} from "embla-carousel-react";
-
-import { cn } from "@shiron/ui/lib/utils";
 import { Button } from "@shiron/ui/components/ui/button";
+import { cn } from "@shiron/ui/lib/utils";
 import {
 	AltArrowLeftLinearIcon,
 	AltArrowRightLinearIcon,
 } from "@solar-icons/react";
+import useEmblaCarousel, {
+	type UseEmblaCarouselType,
+} from "embla-carousel-react";
+import * as React from "react";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -190,7 +189,7 @@ function CarouselPrevious({
 			className={cn(
 				"absolute touch-manipulation rounded-full",
 				orientation === "horizontal"
-					? "top-1/2 -left-12 -translate-y-1/2"
+					? "top-1/2 -left-12 -translate-y-1/2 active:-translate-y-1/2"
 					: "-top-12 left-1/2 -translate-x-1/2 rotate-90",
 				className,
 			)}
@@ -220,7 +219,7 @@ function CarouselNext({
 			className={cn(
 				"absolute touch-manipulation rounded-full",
 				orientation === "horizontal"
-					? "top-1/2 -right-12 -translate-y-1/2"
+					? "top-1/2 -right-12 -translate-y-1/2 active:-translate-y-1/2"
 					: "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
 				className,
 			)}
@@ -235,11 +234,11 @@ function CarouselNext({
 }
 
 export {
-	type CarouselApi,
 	Carousel,
+	type CarouselApi,
 	CarouselContent,
 	CarouselItem,
-	CarouselPrevious,
 	CarouselNext,
+	CarouselPrevious,
 	useCarousel,
 };

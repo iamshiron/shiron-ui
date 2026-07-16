@@ -1,7 +1,3 @@
-import type * as React from "react";
-import { Command as CommandPrimitive } from "cmdk";
-
-import { cn } from "@shiron/ui/lib/utils";
 import {
 	Dialog,
 	DialogContent,
@@ -13,7 +9,11 @@ import {
 	InputGroup,
 	InputGroupAddon,
 } from "@shiron/ui/components/ui/input-group";
+
+import { cn } from "@shiron/ui/lib/utils";
 import { CheckCircleLinearIcon, MagnifierLinearIcon } from "@solar-icons/react";
+import { Command as CommandPrimitive } from "cmdk";
+import type * as React from "react";
 
 function Command({
 	className,
@@ -57,7 +57,7 @@ function CommandDialog({
 				)}
 				showCloseButton={showCloseButton}
 			>
-				{children}
+				<Command className="bg-transparent before:hidden">{children}</Command>
 			</DialogContent>
 		</Dialog>
 	);
@@ -183,11 +183,11 @@ function CommandShortcut({
 export {
 	Command,
 	CommandDialog,
-	CommandInput,
-	CommandList,
 	CommandEmpty,
 	CommandGroup,
+	CommandInput,
 	CommandItem,
-	CommandShortcut,
+	CommandList,
 	CommandSeparator,
+	CommandShortcut,
 };

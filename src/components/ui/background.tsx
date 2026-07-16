@@ -1,6 +1,5 @@
-import * as React from "react";
-
 import { cn } from "@shiron/ui/lib/utils";
+import * as React from "react";
 
 type BackgroundIntensity = "subtle" | "default" | "vivid";
 
@@ -111,7 +110,10 @@ function BackgroundGrid({
 	return (
 		<div
 			data-slot="background-grid"
-			className={cn("absolute inset-0 opacity-[0.025]", className)}
+			className={cn(
+				"absolute inset-0 opacity-[0.06] dark:opacity-[0.025]",
+				className,
+			)}
 			style={{
 				backgroundImage: `linear-gradient(var(--foreground) ${lineWidth}px, transparent ${lineWidth}px), linear-gradient(90deg, var(--foreground) ${lineWidth}px, transparent ${lineWidth}px)`,
 				backgroundSize: `${cellSize}px ${cellSize}px`,
@@ -453,7 +455,9 @@ const backgrounds = {
 			<BackgroundTiltGrid {...props} />
 		</>
 	),
-	spotlight: (props: BackgroundLayerProps) => <BackgroundSpotlight {...props} />,
+	spotlight: (props: BackgroundLayerProps) => (
+		<BackgroundSpotlight {...props} />
+	),
 	solid: () => null,
 } satisfies Record<string, (props: BackgroundLayerProps) => React.ReactNode>;
 
@@ -561,24 +565,24 @@ function Background({
 
 export {
 	Background,
-	BackgroundWash,
-	BackgroundBlobs,
-	BackgroundGrid,
-	BackgroundDots,
-	BackgroundMesh,
 	BackgroundAurora,
 	BackgroundBeams,
-	BackgroundStars,
-	BackgroundTiltGrid,
-	BackgroundSpotlight,
+	BackgroundBlobs,
+	BackgroundDots,
 	BackgroundGrain,
-	BackgroundVignette,
-	BackgroundScanlines,
-	backgrounds,
-	overlays,
-	type BackgroundVariant,
+	BackgroundGrid,
+	type BackgroundIntensity,
+	type BackgroundLayerProps,
+	BackgroundMesh,
 	type BackgroundOverlay,
 	type BackgroundOverlayProps,
-	type BackgroundLayerProps,
-	type BackgroundIntensity,
+	BackgroundScanlines,
+	BackgroundSpotlight,
+	BackgroundStars,
+	BackgroundTiltGrid,
+	type BackgroundVariant,
+	BackgroundVignette,
+	BackgroundWash,
+	backgrounds,
+	overlays,
 };
