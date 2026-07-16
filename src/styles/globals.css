@@ -343,6 +343,18 @@
 		opacity: 0;
 	}
 }
+/* Slow ambient drift for the background blobs. */
+@keyframes honami-drift {
+	0% {
+		transform: translate(0, 0) scale(1);
+	}
+	50% {
+		transform: translate(3%, -2%) scale(1.06);
+	}
+	100% {
+		transform: translate(0, 0) scale(1);
+	}
+}
 
 .honami-caret {
 	display: inline-block;
@@ -368,7 +380,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.honami-shimmer {
+	.honami-shimmer,
+	.honami-blob {
 		/* biome-ignore lint/complexity/noImportantStyles: reduced-motion override must beat the animation utility */
 		animation: none !important;
 	}
