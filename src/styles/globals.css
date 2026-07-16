@@ -1,7 +1,9 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+/* The `dark:` utility variant activates for dark themes. `.dark` is kept for
+   back-compat; list each dark theme's `[data-theme]` here when adding one. */
+@custom-variant dark (&:is(:where(.dark, [data-theme="amethyst"]) *));
 
 /* ─────────────────────────────────────────────────────────────
    State/orientation variants used across the components. These
@@ -94,8 +96,16 @@
 	--shadow-glow: var(--honami-glow);
 }
 
-/* Light theme (muted lavender-grey) */
-:root {
+/* ─────────────────────────────────────────────────────────────
+   Themes. Each theme is a self-contained token block selected via
+   `data-theme="<name>"`. To add one: copy a block below, give it a
+   new `[data-theme]` selector, add it to the `themes` registry in
+   `src/lib/themes.ts`, and (if it is dark) to the `dark` variant above.
+   ───────────────────────────────────────────────────────────── */
+
+/* Jasper — light (the default when no theme is set) */
+:root,
+[data-theme="jasper"] {
 	--background: #ede6f7;
 	--foreground: #2b2340;
 	--card: #f4eefb;
@@ -157,8 +167,9 @@
 	--honami-glow: 0 0 18px rgba(126, 82, 216, 0.12);
 }
 
-/* Dark theme (primary) — deep muted mauve */
-.dark {
+/* Amethyst — dark (primary) — deep muted mauve */
+.dark,
+[data-theme="amethyst"] {
 	--background: #0c0912;
 	--foreground: #e4dcef;
 	--card: #14101b;

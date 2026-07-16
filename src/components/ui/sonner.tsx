@@ -8,12 +8,16 @@ import {
 	RefreshLinearIcon,
 } from "@solar-icons/react";
 
+import { themeMode } from "@shiron/ui/lib/themes";
+
 const Toaster = ({ ...props }: ToasterProps) => {
 	const { theme = "system" } = useTheme();
+	// Named themes (e.g. "amethyst") resolve to the light/dark mode sonner needs.
+	const mode = theme === "system" ? "system" : themeMode(theme);
 
 	return (
 		<Sonner
-			theme={theme as ToasterProps["theme"]}
+			theme={mode as ToasterProps["theme"]}
 			className="toaster group"
 			icons={{
 				success: <CheckCircleLinearIcon className="size-4" />,
