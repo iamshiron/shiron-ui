@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import {
 	Background,
@@ -14,6 +14,16 @@ function firstBlob(container: HTMLElement): HTMLElement {
 		throw new Error("expected a blob to be rendered");
 	}
 	return blob;
+}
+
+function spotlight(container: HTMLElement): HTMLElement {
+	const el = container.querySelector<HTMLElement>(
+		'[data-slot="background-spotlight"]',
+	);
+	if (!el) {
+		throw new Error("expected a spotlight to be rendered");
+	}
+	return el;
 }
 
 describe("Background", () => {
@@ -112,6 +122,35 @@ describe("Background", () => {
 		expect(
 			scanlines.container.querySelector('[data-slot="background-scanlines"]'),
 		).not.toBeNull();
+	});
+});
+
+describe("Background spotlight", () => {
+	it("tracks the pointer into CSS variables", () => {
+		const { container } = render(<Background variant="spotlight" />);
+		const el = spotlight(container);
+
+		fireEvent(
+			window,
+			new MouseEvent("pointermove", { clientX: 123, clientY: 45 }),
+		);
+
+		expect(el.style.getPropertyValue("--spotlight-x")).toBe("123px");
+		expect(el.style.getPropertyValue("--spotlight-y")).toBe("45px");
+	});
+
+	it("does not track when animated is false", () => {
+		const { container } = render(
+			<Background variant="spotlight" animated={false} />,
+		);
+		const el = spotlight(container);
+
+		fireEvent(
+			window,
+			new MouseEvent("pointermove", { clientX: 10, clientY: 10 }),
+		);
+
+		expect(el.style.getPropertyValue("--spotlight-x")).toBe("");
 	});
 });
 

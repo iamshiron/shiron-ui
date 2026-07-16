@@ -1,4 +1,4 @@
-import type * as React from "react";
+import * as React from "react";
 
 import { cn } from "@shiron/ui/lib/utils";
 
@@ -166,6 +166,46 @@ function BackgroundDots({ className, ...props }: React.ComponentProps<"div">) {
 				backgroundSize: "22px 22px",
 			}}
 			{...props}
+		/>
+	);
+}
+
+/**
+ * A soft glow that follows the pointer. Falls back to a centred, static glow
+ * when the pointer is coarse (touch) or the user prefers reduced motion.
+ */
+function BackgroundSpotlight({ animated = true }: BackgroundLayerProps) {
+	const ref = React.useRef<HTMLDivElement>(null);
+
+	React.useEffect(() => {
+		const el = ref.current;
+		if (!el) {
+			return;
+		}
+		const reduce = window.matchMedia?.(
+			"(prefers-reduced-motion: reduce)",
+		).matches;
+		const coarse = window.matchMedia?.("(pointer: coarse)").matches;
+		if (!animated || reduce || coarse) {
+			return;
+		}
+		const onMove = (event: PointerEvent) => {
+			el.style.setProperty("--spotlight-x", `${event.clientX}px`);
+			el.style.setProperty("--spotlight-y", `${event.clientY}px`);
+		};
+		window.addEventListener("pointermove", onMove);
+		return () => window.removeEventListener("pointermove", onMove);
+	}, [animated]);
+
+	return (
+		<div
+			ref={ref}
+			data-slot="background-spotlight"
+			className="absolute inset-0"
+			style={{
+				background:
+					"radial-gradient(600px circle at var(--spotlight-x, 50%) var(--spotlight-y, 35%), var(--honami-accent-soft), transparent 70%)",
+			}}
 		/>
 	);
 }
@@ -350,6 +390,7 @@ const backgrounds = {
 			<BackgroundPerspectiveGrid {...props} />
 		</>
 	),
+	spotlight: (props: BackgroundLayerProps) => <BackgroundSpotlight {...props} />,
 	solid: () => null,
 } satisfies Record<string, (props: BackgroundLayerProps) => React.ReactNode>;
 
@@ -418,6 +459,7 @@ export {
 	BackgroundBeams,
 	BackgroundStars,
 	BackgroundPerspectiveGrid,
+	BackgroundSpotlight,
 	BackgroundGrain,
 	BackgroundVignette,
 	BackgroundScanlines,
