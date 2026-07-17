@@ -1,13 +1,13 @@
 "use client";
 
-import type * as React from "react";
-import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
-
+import { CheckMark } from "@shiron/ui/components/ui/check-mark";
 import { cn } from "@shiron/ui/lib/utils";
 import {
 	AltArrowRightLinearIcon,
 	CheckCircleLinearIcon,
 } from "@solar-icons/react";
+import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
+import type * as React from "react";
 
 function DropdownMenu({
 	...props
@@ -112,7 +112,7 @@ function DropdownMenuCheckboxItem({
 				data-slot="dropdown-menu-checkbox-item-indicator"
 			>
 				<DropdownMenuPrimitive.ItemIndicator>
-					<CheckCircleLinearIcon />
+					<CheckMark />
 				</DropdownMenuPrimitive.ItemIndicator>
 			</span>
 			{children}
@@ -259,18 +259,18 @@ function DropdownMenuSubContent({
 
 export {
 	DropdownMenu,
-	DropdownMenuPortal,
-	DropdownMenuTrigger,
+	DropdownMenuCheckboxItem,
 	DropdownMenuContent,
 	DropdownMenuGroup,
-	DropdownMenuLabel,
 	DropdownMenuItem,
-	DropdownMenuCheckboxItem,
+	DropdownMenuLabel,
+	DropdownMenuPortal,
 	DropdownMenuRadioGroup,
 	DropdownMenuRadioItem,
 	DropdownMenuSeparator,
 	DropdownMenuShortcut,
 	DropdownMenuSub,
-	DropdownMenuSubTrigger,
 	DropdownMenuSubContent,
+	DropdownMenuSubTrigger,
+	DropdownMenuTrigger,
 };

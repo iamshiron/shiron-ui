@@ -1,3 +1,4 @@
+import { CheckMark } from "@shiron/ui/components/ui/check-mark";
 import {
 	Dialog,
 	DialogContent,
@@ -9,9 +10,8 @@ import {
 	InputGroup,
 	InputGroupAddon,
 } from "@shiron/ui/components/ui/input-group";
-
 import { cn } from "@shiron/ui/lib/utils";
-import { CheckCircleLinearIcon, MagnifierLinearIcon } from "@solar-icons/react";
+import { MagnifierLinearIcon } from "@solar-icons/react";
 import { Command as CommandPrimitive } from "cmdk";
 import type * as React from "react";
 
@@ -159,7 +159,7 @@ function CommandItem({
 			{...props}
 		>
 			{children}
-			<CheckCircleLinearIcon className="ml-auto opacity-0 group-has-data-[slot=command-shortcut]/command-item:hidden group-data-[checked=true]/command-item:opacity-100" />
+			<CheckMark className="ml-auto opacity-0 group-has-data-[slot=command-shortcut]/command-item:hidden group-data-[checked=true]/command-item:opacity-100" />
 		</CommandPrimitive.Item>
 	);
 }

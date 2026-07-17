@@ -1,26 +1,7 @@
-import type * as React from "react";
-import { Checkbox as CheckboxPrimitive } from "radix-ui";
-
+import { CheckMark } from "@shiron/ui/components/ui/check-mark";
 import { cn } from "@shiron/ui/lib/utils";
-
-/** A plain checkmark — Solar v2 only ships a check-in-a-circle, which reads
- * oddly inside a square checkbox, so we draw the tick directly. */
-function CheckMark(props: React.ComponentProps<"svg">) {
-	return (
-		<svg
-			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			strokeWidth={2.5}
-			strokeLinecap="round"
-			strokeLinejoin="round"
-			aria-hidden="true"
-			{...props}
-		>
-			<path d="M5 13l4 4L19 7" />
-		</svg>
-	);
-}
+import { Checkbox as CheckboxPrimitive } from "radix-ui";
+import type * as React from "react";
 
 function Checkbox({
 	className,

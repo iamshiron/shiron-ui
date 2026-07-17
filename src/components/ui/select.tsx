@@ -1,14 +1,13 @@
 "use client";
 
-import type * as React from "react";
-import { Select as SelectPrimitive } from "radix-ui";
-
+import { CheckMark } from "@shiron/ui/components/ui/check-mark";
 import { cn } from "@shiron/ui/lib/utils";
 import {
 	AltArrowDownLinearIcon,
 	AltArrowUpLinearIcon,
-	CheckCircleLinearIcon,
 } from "@solar-icons/react";
+import { Select as SelectPrimitive } from "radix-ui";
+import type * as React from "react";
 
 function Select({
 	...props
@@ -128,7 +127,7 @@ function SelectItem({
 		>
 			<span className="pointer-events-none absolute right-2 flex items-center justify-center">
 				<SelectPrimitive.ItemIndicator>
-					<CheckCircleLinearIcon className="pointer-events-none" />
+					<CheckMark className="pointer-events-none" />
 				</SelectPrimitive.ItemIndicator>
 			</span>
 			<SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>

@@ -1,11 +1,11 @@
-import type * as React from "react";
-import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
-
+import { CheckMark } from "@shiron/ui/components/ui/check-mark";
 import { cn } from "@shiron/ui/lib/utils";
 import {
 	AltArrowRightLinearIcon,
 	CheckCircleLinearIcon,
 } from "@solar-icons/react";
+import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
+import type * as React from "react";
 
 function ContextMenu({
 	...props
@@ -164,7 +164,7 @@ function ContextMenuCheckboxItem({
 		>
 			<span className="pointer-events-none absolute right-2 flex items-center justify-center">
 				<ContextMenuPrimitive.ItemIndicator>
-					<CheckCircleLinearIcon />
+					<CheckMark />
 				</ContextMenuPrimitive.ItemIndicator>
 			</span>
 			{children}
@@ -251,18 +251,18 @@ function ContextMenuShortcut({
 
 export {
 	ContextMenu,
-	ContextMenuTrigger,
-	ContextMenuContent,
-	ContextMenuItem,
 	ContextMenuCheckboxItem,
-	ContextMenuRadioItem,
+	ContextMenuContent,
+	ContextMenuGroup,
+	ContextMenuItem,
 	ContextMenuLabel,
+	ContextMenuPortal,
+	ContextMenuRadioGroup,
+	ContextMenuRadioItem,
 	ContextMenuSeparator,
 	ContextMenuShortcut,
-	ContextMenuGroup,
-	ContextMenuPortal,
 	ContextMenuSub,
 	ContextMenuSubContent,
 	ContextMenuSubTrigger,
-	ContextMenuRadioGroup,
+	ContextMenuTrigger,
 };

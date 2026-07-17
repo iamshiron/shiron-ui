@@ -1,13 +1,13 @@
 "use client";
 
-import type * as React from "react";
-import { Menubar as MenubarPrimitive } from "radix-ui";
-
+import { CheckMark } from "@shiron/ui/components/ui/check-mark";
 import { cn } from "@shiron/ui/lib/utils";
 import {
 	AltArrowRightLinearIcon,
 	CheckCircleLinearIcon,
 } from "@solar-icons/react";
+import { Menubar as MenubarPrimitive } from "radix-ui";
+import type * as React from "react";
 
 function Menubar({
 	className,
@@ -133,7 +133,7 @@ function MenubarCheckboxItem({
 		>
 			<span className="pointer-events-none absolute left-2 flex size-4 items-center justify-center [&_svg:not([class*='size-'])]:size-4">
 				<MenubarPrimitive.ItemIndicator>
-					<CheckCircleLinearIcon />
+					<CheckMark />
 				</MenubarPrimitive.ItemIndicator>
 			</span>
 			{children}
@@ -266,19 +266,19 @@ function MenubarSubContent({
 
 export {
 	Menubar,
-	MenubarPortal,
-	MenubarMenu,
-	MenubarTrigger,
+	MenubarCheckboxItem,
 	MenubarContent,
 	MenubarGroup,
-	MenubarSeparator,
-	MenubarLabel,
 	MenubarItem,
-	MenubarShortcut,
-	MenubarCheckboxItem,
+	MenubarLabel,
+	MenubarMenu,
+	MenubarPortal,
 	MenubarRadioGroup,
 	MenubarRadioItem,
+	MenubarSeparator,
+	MenubarShortcut,
 	MenubarSub,
-	MenubarSubTrigger,
 	MenubarSubContent,
+	MenubarSubTrigger,
+	MenubarTrigger,
 };
