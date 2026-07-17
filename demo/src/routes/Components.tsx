@@ -28,7 +28,7 @@ export function ComponentsPage() {
 									type="button"
 									onClick={() => navigate(`#${d.id}`)}
 									className={cn(
-										"rounded-md px-2 py-1.5 text-left text-sm transition-colors",
+										"cursor-pointer rounded-md px-2 py-1.5 text-left text-sm transition-colors",
 										d.id === demo?.id
 											? "bg-foreground/10 font-medium text-foreground"
 											: "text-muted-foreground hover:text-foreground",
