@@ -3,8 +3,11 @@ import { describe, expect, it, vi } from "vitest";
 import { Button, buttonVariants } from "@shiron/ui/components/ui/button";
 
 describe("buttonVariants", () => {
-	it("emits the accent gradient utility for the default variant", () => {
-		expect(buttonVariants({ variant: "default" })).toContain("honami-grad");
+	it("emits a solid accent fill for the default variant", () => {
+		expect(buttonVariants({ variant: "default" })).toContain("bg-primary");
+		expect(buttonVariants({ variant: "default" })).toContain(
+			"text-primary-foreground",
+		);
 	});
 
 	it("applies the requested size", () => {

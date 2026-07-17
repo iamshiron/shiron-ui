@@ -9,9 +9,9 @@ const buttonVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: "honami-grad bg-clip-padding text-white hover:opacity-90",
-				solid:
-					"bg-primary text-primary-foreground hover:bg-primary/85",
+				default:
+					"bg-primary text-primary-foreground hover:bg-primary/85 hover:shadow-[var(--honami-glow)]",
+				solid: "bg-primary text-primary-foreground hover:bg-primary/85",
 				outline:
 					"border-border bg-honami-bg-2/40 hover:bg-input/50 hover:text-foreground hover:border-honami-accent-line aria-expanded:bg-muted aria-expanded:text-foreground dark:bg-input/30",
 				secondary:
