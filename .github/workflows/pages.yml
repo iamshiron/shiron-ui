@@ -2,7 +2,7 @@ name: Deploy demo and Storybook to Pages
 
 on:
   push:
-    branches: [main, docs]
+    branches: [main]
   workflow_dispatch:
 
 # Allow the workflow to publish to GitHub Pages.
@@ -33,10 +33,19 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      # Demo at the site root; Storybook nested under /storybook/.
-      # The project Pages site is served from /shiron-ui/.
-      - run: pnpm -C demo build --base=/shiron-ui/
-      - run: pnpm -C demo build-storybook --output-dir dist/storybook
+      # The project Pages site is served from /shiron-ui/. The demo sits at that
+      # root; Storybook is nested under /shiron-ui/storybook/. Build the demo
+      # first — Vite empties demo/dist — then emit Storybook into that dist.
+      - name: Build demo
+        run: pnpm -C demo build --base=/shiron-ui/
+
+      # STORYBOOK_BASE_PATH sets Vite's `base` for the Storybook build (see
+      # demo/.storybook/main.ts) so the preview iframe's assets resolve from the
+      # nested subpath instead of the site root.
+      - name: Build Storybook
+        env:
+          STORYBOOK_BASE_PATH: /shiron-ui/storybook/
+        run: pnpm -C demo build-storybook --output-dir dist/storybook
 
       - uses: actions/configure-pages@v5
 

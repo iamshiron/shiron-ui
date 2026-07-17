@@ -17,6 +17,12 @@ const config: StorybookConfig = {
 			"@shiron/ui": resolve(dir, "../../src"),
 			"@": resolve(dir, "../src"),
 		};
+		// On GitHub Pages the demo lives at /shiron-ui/ and Storybook is nested
+		// under /shiron-ui/storybook/, so its assets must resolve from there.
+		// The Pages workflow sets STORYBOOK_BASE_PATH; dev/local build stays at "/".
+		if (process.env.STORYBOOK_BASE_PATH) {
+			cfg.base = process.env.STORYBOOK_BASE_PATH;
+		}
 		return cfg;
 	},
 };
