@@ -1,7 +1,7 @@
 # Honami UI
 
 [![CI](https://github.com/iamshiron/shiron-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/iamshiron/shiron-ui/actions/workflows/ci.yml)
-[![Deploy demo and Storybook to Pages](https://github.com/iamshiron/shiron-ui/actions/workflows/pages.yml/badge.svg)](https://github.com/iamshiron/shiron-ui/actions/workflows/pages.yml)
+[![Deploy](https://github.com/iamshiron/shiron-ui/actions/workflows/pages.yml/badge.svg)](https://github.com/iamshiron/shiron-ui/actions/workflows/pages.yml)
 
 A source-only React 19 + Tailwind CSS v4 component library built on
 [shadcn/ui](https://ui.shadcn.com): glassmorphic surfaces, gradient accents and
@@ -30,13 +30,13 @@ setting `data-theme` on the root, or use the provider-less `useTheme` hook.
 | Jade | Peridot | Green |
 
 | | |
-| --- | --- |
-| ![Amethyst](assets/screenshots/amethyst.png) Amethyst | ![Jasper](assets/screenshots/jasper.png) Jasper |
-| ![Sapphire](assets/screenshots/sapphire.png) Sapphire | ![Aquamarine](assets/screenshots/aquamarine.png) Aquamarine |
-| ![Ruby](assets/screenshots/ruby.png) Ruby | ![Carnelian](assets/screenshots/carnelian.png) Carnelian |
-| ![Jade](assets/screenshots/jade.png) Jade | ![Peridot](assets/screenshots/peridot.png) Peridot |
-| ![Topaz](assets/screenshots/topaz.png) Topaz | ![Amber](assets/screenshots/amber.png) Amber |
-| ![Onyx](assets/screenshots/onyx.png) Onyx | ![Opal](assets/screenshots/opal.png) Opal |
+| :---: | :---: |
+| <img src="assets/screenshots/amethyst.png" width="400" alt="Amethyst" /><br>**Amethyst** | <img src="assets/screenshots/jasper.png" width="400" alt="Jasper" /><br>**Jasper** |
+| <img src="assets/screenshots/sapphire.png" width="400" alt="Sapphire" /><br>**Sapphire** | <img src="assets/screenshots/aquamarine.png" width="400" alt="Aquamarine" /><br>**Aquamarine** |
+| <img src="assets/screenshots/ruby.png" width="400" alt="Ruby" /><br>**Ruby** | <img src="assets/screenshots/carnelian.png" width="400" alt="Carnelian" /><br>**Carnelian** |
+| <img src="assets/screenshots/jade.png" width="400" alt="Jade" /><br>**Jade** | <img src="assets/screenshots/peridot.png" width="400" alt="Peridot" /><br>**Peridot** |
+| <img src="assets/screenshots/topaz.png" width="400" alt="Topaz" /><br>**Topaz** | <img src="assets/screenshots/amber.png" width="400" alt="Amber" /><br>**Amber** |
+| <img src="assets/screenshots/onyx.png" width="400" alt="Onyx" /><br>**Onyx** | <img src="assets/screenshots/opal.png" width="400" alt="Opal" /><br>**Opal** |
 
 ## Built on
 
