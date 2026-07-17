@@ -2,7 +2,25 @@ import type * as React from "react";
 import { Checkbox as CheckboxPrimitive } from "radix-ui";
 
 import { cn } from "@shiron/ui/lib/utils";
-import { CheckCircleLinearIcon } from "@solar-icons/react";
+
+/** A plain checkmark — Solar v2 only ships a check-in-a-circle, which reads
+ * oddly inside a square checkbox, so we draw the tick directly. */
+function CheckMark(props: React.ComponentProps<"svg">) {
+	return (
+		<svg
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			strokeWidth={2.5}
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			aria-hidden="true"
+			{...props}
+		>
+			<path d="M5 13l4 4L19 7" />
+		</svg>
+	);
+}
 
 function Checkbox({
 	className,
@@ -21,7 +39,7 @@ function Checkbox({
 				data-slot="checkbox-indicator"
 				className="grid place-content-center text-current transition-none [&>svg]:size-3.5"
 			>
-				<CheckCircleLinearIcon />
+				<CheckMark />
 			</CheckboxPrimitive.Indicator>
 		</CheckboxPrimitive.Root>
 	);
