@@ -1,5 +1,8 @@
 # Honami UI
 
+[![CI](https://github.com/iamshiron/shiron-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/iamshiron/shiron-ui/actions/workflows/ci.yml)
+[![Deploy demo and Storybook to Pages](https://github.com/iamshiron/shiron-ui/actions/workflows/pages.yml/badge.svg)](https://github.com/iamshiron/shiron-ui/actions/workflows/pages.yml)
+
 A source-only React 19 + Tailwind CSS v4 component library built on
 [shadcn/ui](https://ui.shadcn.com): glassmorphic surfaces, gradient accents and
 twelve named themes, all driven by one design-token layer. Published as the
