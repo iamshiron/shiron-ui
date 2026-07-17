@@ -28,6 +28,10 @@ export type Demo = {
 	code: (variant: string) => string;
 	/** Search aliases (also shown on the component page). Filled from KEYWORDS. */
 	keywords?: string[];
+	/** Set to `false` to opt out of the auto-generated Storybook link (no story exists). */
+	storybook?: false;
+	/** Resolved Storybook autodocs URL — filled during registry assembly. */
+	storybookUrl?: string;
 };
 
 /** A named group of demos shown as a section in the sidebar. */

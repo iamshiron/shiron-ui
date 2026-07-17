@@ -120,25 +120,39 @@ const THEMES = [
 
 export function DocsPage() {
 	return (
-		<div className="flex flex-col gap-12">
+		<div className="-mt-3 flex flex-col gap-12">
 			<header className="flex flex-col gap-3">
 				<h1 className="font-heading font-semibold text-4xl tracking-tight">
 					Getting started
 				</h1>
 				<p className="max-w-prose text-muted-foreground leading-relaxed">
 					{site.name} is a <strong>source-only</strong> component library — no
-					build step, no published package yet. You consume the TypeScript
-					source directly as a git submodule and let your own Vite + Tailwind
-					pipeline compile it. This is the same setup the reference app uses.
+					build step, no bundled runtime. Like shadcn/ui, you own the
+					TypeScript source: consume it directly as a git submodule and let your
+					own Vite + Tailwind pipeline compile it. This is the same setup the
+					reference app uses.
 				</p>
 			</header>
 
 			<Alert>
 				<InfoCircleLinearIcon />
-				<AlertTitle>Packaging will follow</AlertTitle>
+				<AlertTitle>A CLI is planned</AlertTitle>
 				<AlertDescription>
-					A proper npm package is planned. For now the submodule flow below is
-					the supported path.
+					A shadcn-style install script and component index — add components by
+					name and vendor their source into your app — is planned. For now the
+					submodule flow below is the supported path.
+				</AlertDescription>
+			</Alert>
+
+			<Alert>
+				<InfoCircleLinearIcon />
+				<AlertTitle>Build system & framework agnostic</AlertTitle>
+				<AlertDescription>
+					Because you compile the source yourself, the library works with any
+					build system (Nx, Turborepo, …) and any React metaframework (Astro,
+					Next, Remix, …). This guide only covers a plain Vite setup for now —
+					on anything else, follow your build system's and framework's own docs
+					for wiring up a workspace-local TypeScript package and Tailwind.
 				</AlertDescription>
 			</Alert>
 

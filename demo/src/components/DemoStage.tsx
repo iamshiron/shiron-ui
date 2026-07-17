@@ -1,4 +1,5 @@
 import { Button } from "@shiron/ui/components/ui/button";
+import { ArrowRightUpLinearIcon } from "@solar-icons/react";
 import { useState } from "react";
 import { CodeBlock } from "@/components/CodeBlock";
 import type { Demo } from "@/registry/types";
@@ -14,11 +15,26 @@ export function DemoStage({ demo }: { demo: Demo }) {
 
 	return (
 		<div className="flex flex-col gap-5">
-			<div className="flex flex-col gap-1">
-				<h1 className="font-heading font-semibold text-2xl tracking-tight">
-					{demo.name}
-				</h1>
-				<p className="text-muted-foreground text-sm">{demo.description}</p>
+			<div className="flex items-start justify-between gap-4">
+				<div className="flex flex-col gap-1">
+					<h1 className="font-heading font-semibold text-2xl tracking-tight">
+						{demo.name}
+					</h1>
+					<p className="text-muted-foreground text-sm">{demo.description}</p>
+				</div>
+				{demo.storybookUrl ? (
+					<Button
+						asChild
+						variant="outline"
+						size="sm"
+						className="shrink-0 whitespace-nowrap"
+					>
+						<a href={demo.storybookUrl} target="_blank" rel="noreferrer">
+							View on Storybook
+							<ArrowRightUpLinearIcon />
+						</a>
+					</Button>
+				) : null}
 			</div>
 
 			{demo.variants ? (

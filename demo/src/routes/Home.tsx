@@ -59,9 +59,9 @@ export function HomePage() {
 					</h1>
 					<p className="max-w-prose text-base text-muted-foreground leading-relaxed">
 						{site.name} is a source-only React 19 + Tailwind v4 library built on
-						shadcn/ui, with glassmorphic surfaces, gradient accents and twelve
-						named themes. Drop it in as a git submodule and style everything
-						through one token layer.
+						shadcn/ui. It ships pre-styled — glassmorphic surfaces, gradient
+						accents and twelve named themes, all usable out of the box. Drop it
+						in as a git submodule and retheme everything through one token layer.
 					</p>
 					<div className="flex flex-wrap gap-3">
 						<Button asChild size="lg">

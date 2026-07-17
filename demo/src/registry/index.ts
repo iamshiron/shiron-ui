@@ -1,3 +1,5 @@
+import { storybookDocsUrl } from "@/lib/site";
+import { backgroundsGroup } from "./backgrounds";
 import { buttonsGroup } from "./buttons";
 import { dataGroup } from "./data";
 import { feedbackGroup } from "./feedback";
@@ -15,11 +17,18 @@ export const registry: DemoGroup[] = [
 	overlaysGroup,
 	dataGroup,
 	feedbackGroup,
+	backgroundsGroup,
 ].map((group) => ({
 	...group,
 	demos: group.demos.map((demo) => ({
 		...demo,
 		keywords: demo.keywords ?? KEYWORDS[demo.id] ?? [],
+		// The demo groups mirror the Storybook story titles, so each component's
+		// autodocs URL derives straight from them — unless it opts out (no story).
+		storybookUrl:
+			demo.storybook === false
+				? undefined
+				: storybookDocsUrl(group.name, demo.name),
 	})),
 }));
 
