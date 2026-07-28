@@ -2,10 +2,8 @@
 
 import { CheckMark } from "@shiron/ui/components/ui/check-mark";
 import { cn } from "@shiron/ui/lib/utils";
-import {
-	AltArrowRightLinearIcon,
-	CheckCircleLinearIcon,
-} from "@solar-icons/react";
+import { AltArrowRightIcon } from "@solar-icons/react/linear/alt-arrow-right";
+import { CheckCircleIcon } from "@solar-icons/react/linear/check-circle";
 import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 import type * as React from "react";
 
@@ -154,7 +152,7 @@ function DropdownMenuRadioItem({
 				data-slot="dropdown-menu-radio-item-indicator"
 			>
 				<DropdownMenuPrimitive.ItemIndicator>
-					<CheckCircleLinearIcon />
+					<CheckCircleIcon />
 				</DropdownMenuPrimitive.ItemIndicator>
 			</span>
 			{children}
@@ -236,7 +234,7 @@ function DropdownMenuSubTrigger({
 			{...props}
 		>
 			{children}
-			<AltArrowRightLinearIcon className="ml-auto" />
+			<AltArrowRightIcon className="ml-auto" />
 		</DropdownMenuPrimitive.SubTrigger>
 	);
 }

@@ -20,7 +20,7 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "@shiron/ui/components/ui/tooltip";
-import { SidebarMinimalisticLinearIcon } from "@solar-icons/react";
+import { SidebarMinimalisticIcon } from "@solar-icons/react/linear/sidebar-minimalistic";
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -269,7 +269,7 @@ function SidebarTrigger({
 			}}
 			{...props}
 		>
-			<SidebarMinimalisticLinearIcon />
+			<SidebarMinimalisticIcon />
 			<span className="sr-only">Toggle Sidebar</span>
 		</Button>
 	);

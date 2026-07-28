@@ -2,11 +2,9 @@ import type * as React from "react";
 
 import { cn } from "@shiron/ui/lib/utils";
 import { Button } from "@shiron/ui/components/ui/button";
-import {
-	AltArrowLeftLinearIcon,
-	AltArrowRightLinearIcon,
-	MenuDotsLinearIcon,
-} from "@solar-icons/react";
+import { AltArrowLeftIcon } from "@solar-icons/react/linear/alt-arrow-left";
+import { AltArrowRightIcon } from "@solar-icons/react/linear/alt-arrow-right";
+import { MenuDotsIcon } from "@solar-icons/react/linear/menu-dots";
 
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
 	return (
@@ -76,7 +74,7 @@ function PaginationPrevious({
 			className={cn("pl-2!", className)}
 			{...props}
 		>
-			<AltArrowLeftLinearIcon data-icon="inline-start" />
+			<AltArrowLeftIcon data-icon="inline-start" />
 			<span className="hidden sm:block">{text}</span>
 		</PaginationLink>
 	);
@@ -95,7 +93,7 @@ function PaginationNext({
 			{...props}
 		>
 			<span className="hidden sm:block">{text}</span>
-			<AltArrowRightLinearIcon data-icon="inline-end" />
+			<AltArrowRightIcon data-icon="inline-end" />
 		</PaginationLink>
 	);
 }
@@ -114,7 +112,7 @@ function PaginationEllipsis({
 			)}
 			{...props}
 		>
-			<MenuDotsLinearIcon />
+			<MenuDotsIcon />
 			<span className="sr-only">More pages</span>
 		</span>
 	);

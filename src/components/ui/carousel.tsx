@@ -1,9 +1,7 @@
 import { Button } from "@shiron/ui/components/ui/button";
 import { cn } from "@shiron/ui/lib/utils";
-import {
-	AltArrowLeftLinearIcon,
-	AltArrowRightLinearIcon,
-} from "@solar-icons/react";
+import { AltArrowLeftIcon } from "@solar-icons/react/linear/alt-arrow-left";
+import { AltArrowRightIcon } from "@solar-icons/react/linear/alt-arrow-right";
 import useEmblaCarousel, {
 	type UseEmblaCarouselType,
 } from "embla-carousel-react";
@@ -197,7 +195,7 @@ function CarouselPrevious({
 			onClick={scrollPrev}
 			{...props}
 		>
-			<AltArrowLeftLinearIcon />
+			<AltArrowLeftIcon />
 			<span className="sr-only">Previous slide</span>
 		</Button>
 	);
@@ -227,7 +225,7 @@ function CarouselNext({
 			onClick={scrollNext}
 			{...props}
 		>
-			<AltArrowRightLinearIcon />
+			<AltArrowRightIcon />
 			<span className="sr-only">Next slide</span>
 		</Button>
 	);

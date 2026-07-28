@@ -11,7 +11,7 @@ import {
 	InputGroupAddon,
 } from "@shiron/ui/components/ui/input-group";
 import { cn } from "@shiron/ui/lib/utils";
-import { MagnifierLinearIcon } from "@solar-icons/react";
+import { MagnifierIcon } from "@solar-icons/react/linear/magnifier";
 import { Command as CommandPrimitive } from "cmdk";
 import type * as React from "react";
 
@@ -79,7 +79,7 @@ function CommandInput({
 					{...props}
 				/>
 				<InputGroupAddon>
-					<MagnifierLinearIcon className="size-3.5 shrink-0 opacity-50" />
+					<MagnifierIcon className="size-3.5 shrink-0 opacity-50" />
 				</InputGroupAddon>
 			</InputGroup>
 		</div>

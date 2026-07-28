@@ -2,10 +2,8 @@
 
 import { CheckMark } from "@shiron/ui/components/ui/check-mark";
 import { cn } from "@shiron/ui/lib/utils";
-import {
-	AltArrowRightLinearIcon,
-	CheckCircleLinearIcon,
-} from "@solar-icons/react";
+import { AltArrowRightIcon } from "@solar-icons/react/linear/alt-arrow-right";
+import { CheckCircleIcon } from "@solar-icons/react/linear/check-circle";
 import { Menubar as MenubarPrimitive } from "radix-ui";
 import type * as React from "react";
 
@@ -161,7 +159,7 @@ function MenubarRadioItem({
 		>
 			<span className="pointer-events-none absolute left-2 flex size-4 items-center justify-center [&_svg:not([class*='size-'])]:size-4">
 				<MenubarPrimitive.ItemIndicator>
-					<CheckCircleLinearIcon />
+					<CheckCircleIcon />
 				</MenubarPrimitive.ItemIndicator>
 			</span>
 			{children}
@@ -243,7 +241,7 @@ function MenubarSubTrigger({
 			{...props}
 		>
 			{children}
-			<AltArrowRightLinearIcon className="ml-auto size-4" />
+			<AltArrowRightIcon className="ml-auto size-4" />
 		</MenubarPrimitive.SubTrigger>
 	);
 }

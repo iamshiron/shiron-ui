@@ -4,7 +4,7 @@ import * as React from "react";
 import { OTPInput, OTPInputContext } from "input-otp";
 
 import { cn } from "@shiron/ui/lib/utils";
-import { MinusCircleLinearIcon } from "@solar-icons/react";
+import { MinusCircleIcon } from "@solar-icons/react/linear/minus-circle";
 
 function InputOTP({
 	className,
@@ -80,7 +80,7 @@ function InputOTPSeparator({ ...props }: React.ComponentProps<"div">) {
 			role="separator"
 			{...props}
 		>
-			<MinusCircleLinearIcon />
+			<MinusCircleIcon />
 		</div>
 	);
 }
