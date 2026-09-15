@@ -27,18 +27,90 @@ export type ThemeMeta = {
  * next-themes with `attribute="data-theme"`.
  */
 export const themes = [
-	{ name: "amethyst", label: "Amethyst", mode: "dark", accent: "purple", swatch: "#b79bee" },
-	{ name: "jasper", label: "Jasper", mode: "light", accent: "purple", swatch: "#7e52d8" },
-	{ name: "onyx", label: "Onyx", mode: "dark", accent: "neutral", swatch: "#c3ccdd" },
-	{ name: "opal", label: "Opal", mode: "light", accent: "neutral", swatch: "#5f6472" },
-	{ name: "sapphire", label: "Sapphire", mode: "dark", accent: "blue", swatch: "#6ea8f2" },
-	{ name: "aquamarine", label: "Aquamarine", mode: "light", accent: "blue", swatch: "#2e86c0" },
-	{ name: "ruby", label: "Ruby", mode: "dark", accent: "red", swatch: "#ee7386" },
-	{ name: "carnelian", label: "Carnelian", mode: "light", accent: "red", swatch: "#d05846" },
-	{ name: "topaz", label: "Topaz", mode: "dark", accent: "orange", swatch: "#e6a04f" },
-	{ name: "amber", label: "Amber", mode: "light", accent: "orange", swatch: "#d0842e" },
-	{ name: "jade", label: "Jade", mode: "dark", accent: "green", swatch: "#4fd39a" },
-	{ name: "peridot", label: "Peridot", mode: "light", accent: "green", swatch: "#5ba030" },
+	{
+		name: "amethyst",
+		label: "Amethyst",
+		mode: "dark",
+		accent: "purple",
+		swatch: "#b79bee",
+	},
+	{
+		name: "jasper",
+		label: "Jasper",
+		mode: "light",
+		accent: "purple",
+		swatch: "#7e52d8",
+	},
+	{
+		name: "onyx",
+		label: "Onyx",
+		mode: "dark",
+		accent: "neutral",
+		swatch: "#c3ccdd",
+	},
+	{
+		name: "opal",
+		label: "Opal",
+		mode: "light",
+		accent: "neutral",
+		swatch: "#5f6472",
+	},
+	{
+		name: "sapphire",
+		label: "Sapphire",
+		mode: "dark",
+		accent: "blue",
+		swatch: "#6ea8f2",
+	},
+	{
+		name: "aquamarine",
+		label: "Aquamarine",
+		mode: "light",
+		accent: "blue",
+		swatch: "#2e86c0",
+	},
+	{
+		name: "ruby",
+		label: "Ruby",
+		mode: "dark",
+		accent: "red",
+		swatch: "#ee7386",
+	},
+	{
+		name: "carnelian",
+		label: "Carnelian",
+		mode: "light",
+		accent: "red",
+		swatch: "#d05846",
+	},
+	{
+		name: "topaz",
+		label: "Topaz",
+		mode: "dark",
+		accent: "orange",
+		swatch: "#e6a04f",
+	},
+	{
+		name: "amber",
+		label: "Amber",
+		mode: "light",
+		accent: "orange",
+		swatch: "#d0842e",
+	},
+	{
+		name: "jade",
+		label: "Jade",
+		mode: "dark",
+		accent: "green",
+		swatch: "#4fd39a",
+	},
+	{
+		name: "peridot",
+		label: "Peridot",
+		mode: "light",
+		accent: "green",
+		swatch: "#5ba030",
+	},
 ] as const satisfies readonly ThemeMeta[];
 
 export type ThemeName = (typeof themes)[number]["name"];
@@ -84,8 +156,9 @@ export const accents: readonly AccentMeta[] = [
 				id: t.accent,
 				label: capitalize(t.accent),
 				// Prefer the dark theme's (more vibrant) swatch for the family.
-				swatch: (themes.find((x) => x.accent === t.accent && x.mode === "dark") ?? t)
-					.swatch,
+				swatch: (
+					themes.find((x) => x.accent === t.accent && x.mode === "dark") ?? t
+				).swatch,
 			},
 		]),
 	).values(),

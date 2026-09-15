@@ -84,5 +84,9 @@
         "vaul": "^1.1.2",
         "vite-tsconfig-paths": "~5.1.4",
         "vitest": "~4.0.18"
+    },
+    "dependencies": {
+        "@fontsource-variable/azeret-mono": "^5.2.11",
+        "@fontsource-variable/fredoka": "^5.2.10"
     }
 }
