@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router";
 import { App } from "@/App";
 import "@/styles/globals.css";
 
-// biome-ignore lint/style/noNonNullAssertion: the root element is in index.html
+// The root element is present in index.html.
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
 		<BrowserRouter basename={import.meta.env.BASE_URL}>

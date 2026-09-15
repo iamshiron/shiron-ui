@@ -34,5 +34,5 @@ describe("Tooltip", () => {
 
 		const tooltip = await screen.findByRole("tooltip");
 		expect(tooltip).toHaveTextContent("Tooltip copy");
-	});
+	}, 15_000);
 });

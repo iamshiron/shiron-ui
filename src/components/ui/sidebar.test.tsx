@@ -18,9 +18,13 @@ function Probe() {
 	);
 }
 
+function Orphan() {
+	useSidebar();
+	return null;
+}
+
 afterEach(() => {
 	// Reset the cookie the provider writes so tests do not leak state.
-	// biome-ignore lint/suspicious/noDocumentCookie: test cleanup of the sidebar cookie
 	document.cookie = "sidebar_state=; path=/; max-age=0";
 });
 
@@ -57,10 +61,6 @@ describe("SidebarProvider", () => {
 	});
 
 	it("throws when useSidebar is used outside a provider", () => {
-		function Orphan() {
-			useSidebar();
-			return null;
-		}
 		expect(() => render(<Orphan />)).toThrow(/within a SidebarProvider/);
 	});
 });

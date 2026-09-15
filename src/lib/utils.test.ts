@@ -7,7 +7,7 @@ describe("cn", () => {
 	});
 
 	it("drops falsy values and flattens arrays via clsx", () => {
-		expect(cn("a", false && "b", null, undefined, ["c", "d"])).toBe("a c d");
+		expect(cn("a", false, null, undefined, ["c", "d"])).toBe("a c d");
 	});
 
 	it("resolves conflicting tailwind utilities so the last one wins", () => {

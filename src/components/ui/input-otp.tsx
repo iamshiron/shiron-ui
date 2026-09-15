@@ -72,11 +72,9 @@ function InputOTPSlot({
 
 function InputOTPSeparator({ ...props }: React.ComponentProps<"div">) {
 	return (
-		// biome-ignore lint/a11y/useFocusableInteractive lint/a11y/useSemanticElements: OTP separator
 		<div
 			data-slot="input-otp-separator"
 			className="flex items-center [&_svg:not([class*='size-'])]:size-4"
-			// biome-ignore lint/a11y/useAriaPropsForRole: OTP separator
 			role="separator"
 			{...props}
 		>

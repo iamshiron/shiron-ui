@@ -48,7 +48,7 @@ describe("Button", () => {
 	});
 
 	it("forwards a ref to the underlying button element", () => {
-		const ref = vi.fn();
+		const ref = vi.fn<(element: HTMLButtonElement | null) => void>();
 		render(<Button ref={ref}>Ref</Button>);
 
 		expect(ref).toHaveBeenCalledOnce();

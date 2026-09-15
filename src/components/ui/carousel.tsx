@@ -59,10 +59,10 @@ function Carousel({
 	const [canScrollPrev, setCanScrollPrev] = React.useState(false);
 	const [canScrollNext, setCanScrollNext] = React.useState(false);
 
-	const onSelect = React.useCallback((api: CarouselApi) => {
-		if (!api) return;
-		setCanScrollPrev(api.canScrollPrev());
-		setCanScrollNext(api.canScrollNext());
+	const onSelect = React.useCallback((selectedApi: CarouselApi) => {
+		if (!selectedApi) return;
+		setCanScrollPrev(selectedApi.canScrollPrev());
+		setCanScrollNext(selectedApi.canScrollNext());
 	}, []);
 
 	const scrollPrev = React.useCallback(() => {
@@ -116,17 +116,16 @@ function Carousel({
 				canScrollNext,
 			}}
 		>
-			{/* biome-ignore lint/a11y/useSemanticElements: carousel region */}
-			<div
+			<section
 				onKeyDownCapture={handleKeyDown}
 				className={cn("relative", className)}
-				role="region"
+				aria-label="Carousel"
 				aria-roledescription="carousel"
 				data-slot="carousel"
 				{...props}
 			>
 				{children}
-			</div>
+			</section>
 		</CarouselContext.Provider>
 	);
 }
@@ -156,7 +155,6 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
 	const { orientation } = useCarousel();
 
 	return (
-		// biome-ignore lint/a11y/useSemanticElements: carousel slide group
 		<div
 			role="group"
 			aria-roledescription="slide"

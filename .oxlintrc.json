@@ -1,0 +1,30 @@
+{
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "plugins": [
+        "typescript",
+        "unicorn",
+        "oxc",
+        "import",
+        "react",
+        "jsx-a11y",
+        "vitest"
+    ],
+    "categories": {
+        "correctness": "error",
+        "suspicious": "error"
+    },
+    "rules": {
+        "import/no-unassigned-import": "off",
+        "react/react-in-jsx-scope": "off",
+        "eslint/no-shadow": "warn",
+        "jsx-a11y/click-events-have-key-events": "warn",
+        "jsx-a11y/no-noninteractive-element-interactions": "warn",
+        "jsx-a11y/prefer-tag-over-role": "warn",
+        "react/no-unstable-nested-components": "warn",
+        "react/set-state-in-effect": "warn"
+    },
+    "env": {
+        "browser": true,
+        "builtin": true
+    }
+}

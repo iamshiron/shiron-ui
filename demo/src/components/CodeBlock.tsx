@@ -73,7 +73,7 @@ export function CodeBlock({
 			{html ? (
 				<div
 					className="overflow-x-auto p-4 text-[0.8125rem] leading-relaxed [&_pre]:!bg-transparent [&_pre]:font-mono"
-					// biome-ignore lint/security/noDangerouslySetInnerHtml: Shiki output is trusted, generated from our own static strings.
+					// Shiki output is generated from the demo's static source strings.
 					dangerouslySetInnerHTML={{ __html: html }}
 				/>
 			) : (
