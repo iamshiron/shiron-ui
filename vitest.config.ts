@@ -1,11 +1,13 @@
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { playwright } from "@vitest/browser-playwright";
-import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
-	plugins: [react(), tsconfigPaths()],
+	plugins: [react()],
+	resolve: {
+		tsconfigPaths: true,
+	},
 	test: {
 		projects: [
 			{
