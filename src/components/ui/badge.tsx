@@ -9,12 +9,14 @@ const badgeVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: "bg-primary text-primary-foreground [a]:hover:bg-primary/80",
-				gradient: "honami-grad bg-clip-padding text-white [a]:hover:opacity-90",
+				default:
+					"bg-primary text-primary-foreground [a]:hover:bg-primary-hover",
+				gradient:
+					"honami-grad bg-clip-padding text-white [a]:hover:brightness-90",
 				accent:
 					"bg-honami-accent-soft text-honami-accent [a]:hover:bg-honami-accent-soft/70",
 				secondary:
-					"bg-secondary text-secondary-foreground [a]:hover:bg-secondary/80",
+					"bg-secondary text-secondary-foreground [a]:hover:bg-secondary-hover",
 				destructive:
 					"bg-destructive/10 text-destructive focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:focus-visible:ring-destructive/40 [a]:hover:bg-destructive/20",
 				outline:

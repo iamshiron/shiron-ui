@@ -92,8 +92,18 @@
 	--color-muted: var(--muted);
 	--color-secondary-foreground: var(--secondary-foreground);
 	--color-secondary: var(--secondary);
+	--color-secondary-hover: color-mix(
+		in oklab,
+		var(--secondary) 80%,
+		var(--background)
+	);
 	--color-primary-foreground: var(--primary-foreground);
 	--color-primary: var(--primary);
+	--color-primary-hover: color-mix(
+		in oklab,
+		var(--primary) 85%,
+		var(--background)
+	);
 	--color-popover-foreground: var(--popover-foreground);
 	--color-popover: var(--popover);
 	--color-card-foreground: var(--card-foreground);
