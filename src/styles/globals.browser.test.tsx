@@ -48,7 +48,9 @@ describe("CSS / variant integrity", () => {
 		const { container } = render(<Slider defaultValue={[50]} />);
 		const track = query(container, '[data-slot="slider-track"]');
 
-		expect(Number.parseFloat(getComputedStyle(track).height)).toBeGreaterThan(0);
+		expect(Number.parseFloat(getComputedStyle(track).height)).toBeGreaterThan(
+			0,
+		);
 	});
 
 	it("paints the honami gradient on a checked checkbox", () => {

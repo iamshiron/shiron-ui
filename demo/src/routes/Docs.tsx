@@ -127,10 +127,10 @@ export function DocsPage() {
 				</h1>
 				<p className="max-w-prose text-muted-foreground leading-relaxed">
 					{site.name} is a <strong>source-only</strong> component library — no
-					build step, no bundled runtime. Like shadcn/ui, you own the
-					TypeScript source: consume it directly as a git submodule and let your
-					own Vite + Tailwind pipeline compile it. This is the same setup the
-					reference app uses.
+					build step, no bundled runtime. Like shadcn/ui, you own the TypeScript
+					source: consume it directly as a git submodule and let your own Vite +
+					Tailwind pipeline compile it. This is the same setup the reference app
+					uses.
 				</p>
 			</header>
 

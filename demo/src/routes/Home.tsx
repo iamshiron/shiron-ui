@@ -61,7 +61,8 @@ export function HomePage() {
 						{site.name} is a source-only React 19 + Tailwind v4 library built on
 						shadcn/ui. It ships pre-styled — glassmorphic surfaces, gradient
 						accents and twelve named themes, all usable out of the box. Drop it
-						in as a git submodule and retheme everything through one token layer.
+						in as a git submodule and retheme everything through one token
+						layer.
 					</p>
 					<div className="flex flex-wrap gap-3">
 						<Button asChild size="lg">

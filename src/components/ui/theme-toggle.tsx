@@ -47,7 +47,9 @@ function ThemeToggle({
 			variant="outline"
 			size="icon"
 			data-slot="theme-toggle"
-			aria-label={mode === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+			aria-label={
+				mode === "dark" ? "Switch to light theme" : "Switch to dark theme"
+			}
 			disabled={!target}
 			className={className}
 			onClick={() => target && setTheme(target)}

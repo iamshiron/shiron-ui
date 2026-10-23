@@ -1,10 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, describe, expect, it } from "vitest";
-import {
-	SidebarProvider,
-	useSidebar,
-} from "@shiron/ui/components/ui/sidebar";
+import { SidebarProvider, useSidebar } from "@shiron/ui/components/ui/sidebar";
 
 function Probe() {
 	const { state, open, openMobile, isMobile, toggleSidebar } = useSidebar();

@@ -56,7 +56,9 @@ describe("Background", () => {
 		expect(
 			container.querySelector('[data-slot="background-grid"]'),
 		).not.toBeNull();
-		expect(container.querySelector('[data-slot="background-blobs"]')).toBeNull();
+		expect(
+			container.querySelector('[data-slot="background-blobs"]'),
+		).toBeNull();
 	});
 
 	it("renders no decorative layers for the solid variant but keeps children", () => {
@@ -67,7 +69,9 @@ describe("Background", () => {
 		);
 
 		expect(container.querySelector('[data-slot="background-wash"]')).toBeNull();
-		expect(container.querySelector('[data-slot="background-blobs"]')).toBeNull();
+		expect(
+			container.querySelector('[data-slot="background-blobs"]'),
+		).toBeNull();
 		expect(getByText("custom layer")).toBeInTheDocument();
 	});
 
@@ -97,7 +101,9 @@ describe("Background", () => {
 			"data-overlay",
 			"none",
 		);
-		expect(container.querySelector('[data-slot="background-grain"]')).toBeNull();
+		expect(
+			container.querySelector('[data-slot="background-grain"]'),
+		).toBeNull();
 	});
 
 	it("layers the requested texture overlay on top of any variant", () => {
