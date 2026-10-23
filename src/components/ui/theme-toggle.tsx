@@ -1,5 +1,6 @@
 import type * as React from "react";
-import { MoonLinearIcon, SunLinearIcon } from "@solar-icons/react";
+import { MoonIcon } from "@solar-icons/react/linear/moon";
+import { SunIcon } from "@solar-icons/react/linear/sun";
 
 import { useTheme } from "@shiron/ui/hooks/use-theme";
 import {
@@ -55,7 +56,7 @@ function ThemeToggle({
 			onClick={() => target && setTheme(target)}
 			{...props}
 		>
-			{mode === "dark" ? <MoonLinearIcon /> : <SunLinearIcon />}
+			{mode === "dark" ? <MoonIcon /> : <SunIcon />}
 		</Button>
 	);
 }

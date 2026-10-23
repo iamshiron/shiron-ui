@@ -1,12 +1,10 @@
 import { useTheme } from "next-themes";
 import { Toaster as Sonner, type ToasterProps } from "sonner";
-import {
-	CheckCircleLinearIcon,
-	CloseCircleLinearIcon,
-	DangerTriangleLinearIcon,
-	InfoCircleLinearIcon,
-	RefreshLinearIcon,
-} from "@solar-icons/react";
+import { CheckCircleIcon } from "@solar-icons/react/linear/check-circle";
+import { CloseCircleIcon } from "@solar-icons/react/linear/close-circle";
+import { DangerTriangleIcon } from "@solar-icons/react/linear/danger-triangle";
+import { InfoCircleIcon } from "@solar-icons/react/linear/info-circle";
+import { RefreshIcon } from "@solar-icons/react/linear/refresh";
 
 import { themeMode } from "@shiron/ui/lib/themes";
 
@@ -20,11 +18,11 @@ const Toaster = ({ ...props }: ToasterProps) => {
 			theme={mode as ToasterProps["theme"]}
 			className="toaster group"
 			icons={{
-				success: <CheckCircleLinearIcon className="size-4" />,
-				info: <InfoCircleLinearIcon className="size-4" />,
-				warning: <DangerTriangleLinearIcon className="size-4" />,
-				error: <CloseCircleLinearIcon className="size-4" />,
-				loading: <RefreshLinearIcon className="size-4 animate-spin" />,
+				success: <CheckCircleIcon className="size-4" />,
+				info: <InfoCircleIcon className="size-4" />,
+				warning: <DangerTriangleIcon className="size-4" />,
+				error: <CloseCircleIcon className="size-4" />,
+				loading: <RefreshIcon className="size-4 animate-spin" />,
 			}}
 			style={
 				{

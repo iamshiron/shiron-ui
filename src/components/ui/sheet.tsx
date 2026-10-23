@@ -3,7 +3,7 @@ import { Dialog as SheetPrimitive } from "radix-ui";
 
 import { cn } from "@shiron/ui/lib/utils";
 import { Button } from "@shiron/ui/components/ui/button";
-import { CloseCircleLinearIcon } from "@solar-icons/react";
+import { CloseCircleIcon } from "@solar-icons/react/linear/close-circle";
 
 function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
 	return <SheetPrimitive.Root data-slot="sheet" {...props} />;
@@ -73,7 +73,7 @@ function SheetContent({
 							className="absolute top-4 right-4"
 							size="icon-sm"
 						>
-							<CloseCircleLinearIcon />
+							<CloseCircleIcon />
 							<span className="sr-only">Close</span>
 						</Button>
 					</SheetPrimitive.Close>

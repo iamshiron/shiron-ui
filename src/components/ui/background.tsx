@@ -263,6 +263,12 @@ function BackgroundSpotlight({ animated = true }: BackgroundLayerProps) {
  */
 const TILT_REFERENCE_VMAX = 1920;
 
+// Convert a px value (at the reference viewport) to a viewport-relative
+// length, so zoom scales the plane and the grid together instead of apart.
+function toVmax(px: number): string {
+	return `${(px / TILT_REFERENCE_VMAX) * 100}vmax`;
+}
+
 function BackgroundTiltGrid({
 	rotateX = 38,
 	rotateY = 0,
@@ -271,11 +277,8 @@ function BackgroundTiltGrid({
 	cellSize = 46,
 	lineWidth = 1,
 }: BackgroundLayerProps) {
-	// Convert a px value (at the reference viewport) to a viewport-relative
-	// length, so zoom scales the plane and the grid together instead of apart.
-	const vmax = (px: number) => `${(px / TILT_REFERENCE_VMAX) * 100}vmax`;
-	const cell = vmax(cellSize);
-	const line = vmax(lineWidth);
+	const cell = toVmax(cellSize);
+	const line = toVmax(lineWidth);
 	// A sub-pixel blur softens the hard line edges. CSS rasterises the gradient
 	// then point-samples it under the 3D transform (no mipmapping), so distant
 	// lines that compress below a pixel would otherwise stair-step/shimmer. This
@@ -291,7 +294,7 @@ function BackgroundTiltGrid({
 			className="absolute inset-0 overflow-hidden"
 			aria-hidden="true"
 			style={{
-				perspective: vmax(1200),
+				perspective: toVmax(1200),
 				maskImage: mask,
 				WebkitMaskImage: mask,
 			}}

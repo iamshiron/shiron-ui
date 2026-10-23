@@ -6,7 +6,7 @@ import { ThemeToggle } from "@shiron/ui/components/ui/theme-toggle";
 describe("ThemeToggle", () => {
 	it("flips to the light partner of the accent when a dark theme is active", async () => {
 		const user = userEvent.setup();
-		const onValueChange = vi.fn();
+		const onValueChange = vi.fn<(value: string) => void>();
 		render(<ThemeToggle value="amethyst" onValueChange={onValueChange} />);
 
 		await user.click(screen.getByRole("button"));
@@ -17,7 +17,7 @@ describe("ThemeToggle", () => {
 
 	it("respects the accent prop (blue: sapphire -> aquamarine)", async () => {
 		const user = userEvent.setup();
-		const onValueChange = vi.fn();
+		const onValueChange = vi.fn<(value: string) => void>();
 		render(
 			<ThemeToggle
 				accent="blue"

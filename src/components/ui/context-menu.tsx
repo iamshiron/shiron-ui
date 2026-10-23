@@ -1,9 +1,7 @@
 import { CheckMark } from "@shiron/ui/components/ui/check-mark";
 import { cn } from "@shiron/ui/lib/utils";
-import {
-	AltArrowRightLinearIcon,
-	CheckCircleLinearIcon,
-} from "@solar-icons/react";
+import { AltArrowRightIcon } from "@solar-icons/react/linear/alt-arrow-right";
+import { CheckCircleIcon } from "@solar-icons/react/linear/check-circle";
 import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
 import type * as React from "react";
 
@@ -121,7 +119,7 @@ function ContextMenuSubTrigger({
 			{...props}
 		>
 			{children}
-			<AltArrowRightLinearIcon className="ml-auto" />
+			<AltArrowRightIcon className="ml-auto" />
 		</ContextMenuPrimitive.SubTrigger>
 	);
 }
@@ -192,7 +190,7 @@ function ContextMenuRadioItem({
 		>
 			<span className="pointer-events-none absolute right-2 flex items-center justify-center">
 				<ContextMenuPrimitive.ItemIndicator>
-					<CheckCircleLinearIcon />
+					<CheckCircleIcon />
 				</ContextMenuPrimitive.ItemIndicator>
 			</span>
 			{children}

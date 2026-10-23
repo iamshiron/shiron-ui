@@ -10,11 +10,9 @@ import {
 
 import { cn } from "@shiron/ui/lib/utils";
 import { Button, buttonVariants } from "@shiron/ui/components/ui/button";
-import {
-	AltArrowDownLinearIcon,
-	AltArrowLeftLinearIcon,
-	AltArrowRightLinearIcon,
-} from "@solar-icons/react";
+import { AltArrowDownIcon } from "@solar-icons/react/linear/alt-arrow-down";
+import { AltArrowLeftIcon } from "@solar-icons/react/linear/alt-arrow-left";
+import { AltArrowRightIcon } from "@solar-icons/react/linear/alt-arrow-right";
 
 function Calendar({
 	className,
@@ -91,7 +89,7 @@ function Calendar({
 						: "flex items-center gap-1 rounded-(--cell-radius) text-sm [&>svg]:size-3.5 [&>svg]:text-muted-foreground",
 					defaultClassNames.caption_label,
 				),
-				table: "w-full border-collapse",
+				month_grid: "w-full border-collapse",
 				weekdays: cn("flex", defaultClassNames.weekdays),
 				weekday: cn(
 					"flex-1 rounded-(--cell-radius) text-[0.8rem] font-normal text-muted-foreground select-none",
@@ -151,7 +149,7 @@ function Calendar({
 				Chevron: ({ className, orientation, ...props }) => {
 					if (orientation === "left") {
 						return (
-							<AltArrowLeftLinearIcon
+							<AltArrowLeftIcon
 								className={cn("size-4", className)}
 								{...props}
 							/>
@@ -160,7 +158,7 @@ function Calendar({
 
 					if (orientation === "right") {
 						return (
-							<AltArrowRightLinearIcon
+							<AltArrowRightIcon
 								className={cn("size-4", className)}
 								{...props}
 							/>
@@ -168,10 +166,7 @@ function Calendar({
 					}
 
 					return (
-						<AltArrowDownLinearIcon
-							className={cn("size-4", className)}
-							{...props}
-						/>
+						<AltArrowDownIcon className={cn("size-4", className)} {...props} />
 					);
 				},
 				DayButton: ({ ...props }) => (

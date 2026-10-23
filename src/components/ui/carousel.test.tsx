@@ -5,14 +5,14 @@ import { describe, expect, it, vi } from "vitest";
 // assert the carousel wires keyboard navigation to the embla API.
 const embla = vi.hoisted(() => {
 	const api = {
-		scrollPrev: vi.fn(),
-		scrollNext: vi.fn(),
-		canScrollPrev: vi.fn(() => true),
-		canScrollNext: vi.fn(() => true),
-		on: vi.fn(),
-		off: vi.fn(),
+		scrollPrev: vi.fn<() => void>(),
+		scrollNext: vi.fn<() => void>(),
+		canScrollPrev: vi.fn<() => boolean>(() => true),
+		canScrollNext: vi.fn<() => boolean>(() => true),
+		on: vi.fn<() => void>(),
+		off: vi.fn<() => void>(),
 	};
-	return { api, ref: vi.fn() };
+	return { api, ref: vi.fn<() => void>() };
 });
 
 vi.mock("embla-carousel-react", () => ({
@@ -35,6 +35,11 @@ function Fixture() {
 			</CarouselContent>
 		</Carousel>
 	);
+}
+
+function Orphan() {
+	useCarousel();
+	return null;
 }
 
 describe("Carousel", () => {
@@ -60,10 +65,6 @@ describe("Carousel", () => {
 	});
 
 	it("throws when useCarousel is used outside a Carousel", () => {
-		function Orphan() {
-			useCarousel();
-			return null;
-		}
 		expect(() => render(<Orphan />)).toThrow(/within a <Carousel/);
 	});
 });

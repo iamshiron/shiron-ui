@@ -2,10 +2,8 @@
 
 import { CheckMark } from "@shiron/ui/components/ui/check-mark";
 import { cn } from "@shiron/ui/lib/utils";
-import {
-	AltArrowDownLinearIcon,
-	AltArrowUpLinearIcon,
-} from "@solar-icons/react";
+import { AltArrowDownIcon } from "@solar-icons/react/linear/alt-arrow-down";
+import { AltArrowUpIcon } from "@solar-icons/react/linear/alt-arrow-up";
 import { Select as SelectPrimitive } from "radix-ui";
 import type * as React from "react";
 
@@ -54,7 +52,7 @@ function SelectTrigger({
 		>
 			{children}
 			<SelectPrimitive.Icon asChild>
-				<AltArrowDownLinearIcon className="pointer-events-none size-3.5 text-muted-foreground" />
+				<AltArrowDownIcon className="pointer-events-none size-3.5 text-muted-foreground" />
 			</SelectPrimitive.Icon>
 		</SelectPrimitive.Trigger>
 	);
@@ -164,7 +162,7 @@ function SelectScrollUpButton({
 			)}
 			{...props}
 		>
-			<AltArrowUpLinearIcon />
+			<AltArrowUpIcon />
 		</SelectPrimitive.ScrollUpButton>
 	);
 }
@@ -182,7 +180,7 @@ function SelectScrollDownButton({
 			)}
 			{...props}
 		>
-			<AltArrowDownLinearIcon />
+			<AltArrowDownIcon />
 		</SelectPrimitive.ScrollDownButton>
 	);
 }

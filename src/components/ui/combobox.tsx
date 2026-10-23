@@ -10,10 +10,8 @@ import {
 	InputGroupInput,
 } from "@shiron/ui/components/ui/input-group";
 import { cn } from "@shiron/ui/lib/utils";
-import {
-	AltArrowDownLinearIcon,
-	CloseCircleLinearIcon,
-} from "@solar-icons/react";
+import { AltArrowDownIcon } from "@solar-icons/react/linear/alt-arrow-down";
+import { CloseCircleIcon } from "@solar-icons/react/linear/close-circle";
 import * as React from "react";
 
 const Combobox = ComboboxPrimitive.Root;
@@ -34,7 +32,7 @@ function ComboboxTrigger({
 			{...props}
 		>
 			{children}
-			<AltArrowDownLinearIcon className="pointer-events-none size-3.5 text-muted-foreground" />
+			<AltArrowDownIcon className="pointer-events-none size-3.5 text-muted-foreground" />
 		</ComboboxPrimitive.Trigger>
 	);
 }
@@ -47,7 +45,7 @@ function ComboboxClear({ className, ...props }: ComboboxPrimitive.Clear.Props) {
 			className={cn(className)}
 			{...props}
 		>
-			<CloseCircleLinearIcon className="pointer-events-none" />
+			<CloseCircleIcon className="pointer-events-none" />
 		</ComboboxPrimitive.Clear>
 	);
 }
@@ -261,7 +259,7 @@ function ComboboxChip({
 					className="-ml-1 opacity-50 hover:opacity-100"
 					data-slot="combobox-chip-remove"
 				>
-					<CloseCircleLinearIcon className="pointer-events-none" />
+					<CloseCircleIcon className="pointer-events-none" />
 				</ComboboxPrimitive.ChipRemove>
 			)}
 		</ComboboxPrimitive.Chip>

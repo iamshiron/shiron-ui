@@ -7,7 +7,6 @@ import { Separator } from "@shiron/ui/components/ui/separator";
 
 function ItemGroup({ className, ...props }: React.ComponentProps<"div">) {
 	return (
-		// biome-ignore lint/a11y/useSemanticElements: item list
 		<div
 			role="list"
 			data-slot="item-group"

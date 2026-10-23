@@ -2,10 +2,8 @@ import type * as React from "react";
 import { Slot } from "radix-ui";
 
 import { cn } from "@shiron/ui/lib/utils";
-import {
-	AltArrowRightLinearIcon,
-	MenuDotsLinearIcon,
-} from "@solar-icons/react";
+import { AltArrowRightIcon } from "@solar-icons/react/linear/alt-arrow-right";
+import { MenuDotsIcon } from "@solar-icons/react/linear/menu-dots";
 
 function Breadcrumb({ className, ...props }: React.ComponentProps<"nav">) {
 	return (
@@ -61,11 +59,8 @@ function BreadcrumbLink({
 
 function BreadcrumbPage({ className, ...props }: React.ComponentProps<"span">) {
 	return (
-		// biome-ignore lint/a11y/useFocusableInteractive lint/a11y/useSemanticElements: intentionally non-navigable page indicator
 		<span
 			data-slot="breadcrumb-page"
-			role="link"
-			aria-disabled="true"
 			aria-current="page"
 			className={cn("font-normal text-foreground", className)}
 			{...props}
@@ -86,7 +81,7 @@ function BreadcrumbSeparator({
 			className={cn("[&>svg]:size-3.5", className)}
 			{...props}
 		>
-			{children ?? <AltArrowRightLinearIcon />}
+			{children ?? <AltArrowRightIcon />}
 		</li>
 	);
 }
@@ -106,7 +101,7 @@ function BreadcrumbEllipsis({
 			)}
 			{...props}
 		>
-			<MenuDotsLinearIcon />
+			<MenuDotsIcon />
 			<span className="sr-only">More</span>
 		</span>
 	);

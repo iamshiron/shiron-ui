@@ -65,7 +65,6 @@ export default defineConfig({
 });`,
 	tsconfig: `{
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "@shiron/ui/*": ["../../packages/ui/src/*"]
     }

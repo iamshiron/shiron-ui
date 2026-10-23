@@ -12,8 +12,8 @@ export default defineConfig({
 		alias: {
 			// Mirror how a consumer wires the library in (see the Docs page):
 			// a Vite alias to the library source, Vite resolves the extensions.
-			"@shiron/ui": path.resolve(__dirname, "../src"),
-			"@": path.resolve(__dirname, "./src"),
+			"@shiron/ui": path.resolve(import.meta.dirname, "../src"),
+			"@": path.resolve(import.meta.dirname, "./src"),
 		},
 	},
 	server: {

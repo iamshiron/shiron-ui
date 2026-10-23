@@ -2,10 +2,8 @@ import type * as React from "react";
 import { Accordion as AccordionPrimitive } from "radix-ui";
 
 import { cn } from "@shiron/ui/lib/utils";
-import {
-	AltArrowDownLinearIcon,
-	AltArrowUpLinearIcon,
-} from "@solar-icons/react";
+import { AltArrowDownIcon } from "@solar-icons/react/linear/alt-arrow-down";
+import { AltArrowUpIcon } from "@solar-icons/react/linear/alt-arrow-up";
 
 function Accordion({
 	className,
@@ -52,11 +50,11 @@ function AccordionTrigger({
 				{...props}
 			>
 				{children}
-				<AltArrowDownLinearIcon
+				<AltArrowDownIcon
 					data-slot="accordion-trigger-icon"
 					className="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden"
 				/>
-				<AltArrowUpLinearIcon
+				<AltArrowUpIcon
 					data-slot="accordion-trigger-icon"
 					className="pointer-events-none hidden shrink-0 group-aria-expanded/accordion-trigger:inline"
 				/>
