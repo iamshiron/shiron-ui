@@ -11,13 +11,13 @@ import {
 	DialogTrigger,
 } from "@shiron/ui/components/ui/dialog";
 
-function Fixture() {
+function Fixture({ size }: { size?: "default" | "workspace" }) {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button>Open</Button>
 			</DialogTrigger>
-			<DialogContent>
+			<DialogContent size={size}>
 				<DialogHeader>
 					<DialogTitle>Ring buffer</DialogTitle>
 					<DialogDescription>Allocation-free collection</DialogDescription>
@@ -28,6 +28,21 @@ function Fixture() {
 }
 
 describe("Dialog", () => {
+	it.each(["default", "workspace"] as const)(
+		"supports %s sizing without forwarding a native size attribute",
+		async (size) => {
+			const user = userEvent.setup();
+			render(<Fixture size={size} />);
+			await user.click(screen.getByRole("button", { name: "Open" }));
+			const dialog = await screen.findByRole("dialog");
+			expect(dialog).toHaveAttribute("data-size", size);
+			expect(dialog).not.toHaveAttribute("size");
+			expect(dialog).toHaveAccessibleName("Ring buffer");
+			await user.keyboard("{Escape}");
+			expect(screen.queryByRole("dialog")).toBeNull();
+			expect(screen.getByRole("button", { name: "Open" })).toHaveFocus();
+		},
+	);
 	it("is closed until the trigger is activated", () => {
 		render(<Fixture />);
 		expect(screen.queryByRole("dialog")).toBeNull();
