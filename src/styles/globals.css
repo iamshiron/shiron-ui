@@ -148,6 +148,7 @@
 /* Jasper — light (the default when no theme is set) */
 :root,
 [data-theme="jasper"] {
+	color-scheme: light;
 	--background: #ede6f7;
 	--foreground: #2b2340;
 	--card: #f4eefb;
@@ -212,6 +213,7 @@
 /* Amethyst — dark (primary) — deep muted mauve */
 .dark,
 [data-theme="amethyst"] {
+	color-scheme: dark;
 	--background: #0c0912;
 	--foreground: #e4dcef;
 	--card: #14101b;
@@ -275,6 +277,7 @@
 /* Additional palettes (see src/lib/themes.ts) */
 /* Onyx — dark, OLED */
 [data-theme="onyx"] {
+	color-scheme: dark;
 	--background: #000000;
 	--foreground: #e6e8ee;
 	--card: #0b0b0b;
@@ -337,6 +340,7 @@
 
 /* Sapphire — dark, blue */
 [data-theme="sapphire"] {
+	color-scheme: dark;
 	--background: #0c0d0f;
 	--foreground: #dce6f5;
 	--card: #141518;
@@ -399,6 +403,7 @@
 
 /* Ruby — dark, red */
 [data-theme="ruby"] {
+	color-scheme: dark;
 	--background: #0d0c0c;
 	--foreground: #f2dde0;
 	--card: #171415;
@@ -461,6 +466,7 @@
 
 /* Topaz — dark, orange */
 [data-theme="topaz"] {
+	color-scheme: dark;
 	--background: #0d0c0a;
 	--foreground: #f2e6d5;
 	--card: #151413;
@@ -523,6 +529,7 @@
 
 /* Jade — dark, green */
 [data-theme="jade"] {
+	color-scheme: dark;
 	--background: #0a0d0c;
 	--foreground: #d8f2e4;
 	--card: #131514;
@@ -585,6 +592,7 @@
 
 /* Amber — light, orange */
 [data-theme="amber"] {
+	color-scheme: light;
 	--background: #f3efea;
 	--foreground: #40342b;
 	--card: #f8f5f1;
@@ -647,6 +655,7 @@
 
 /* Aquamarine — light, blue */
 [data-theme="aquamarine"] {
+	color-scheme: light;
 	--background: #eaeff3;
 	--foreground: #23303e;
 	--card: #f1f5f8;
@@ -709,6 +718,7 @@
 
 /* Carnelian — light, red */
 [data-theme="carnelian"] {
+	color-scheme: light;
 	--background: #f3ebea;
 	--foreground: #402b2b;
 	--card: #f8f2f1;
@@ -771,6 +781,7 @@
 
 /* Peridot — light, green */
 [data-theme="peridot"] {
+	color-scheme: light;
 	--background: #ecf3ea;
 	--foreground: #2b402f;
 	--card: #f2f8f1;
@@ -833,6 +844,7 @@
 
 /* Opal — light, neutral */
 [data-theme="opal"] {
+	color-scheme: light;
 	--background: #f3f3f4;
 	--foreground: #2c2e33;
 	--card: #f9f9fa;

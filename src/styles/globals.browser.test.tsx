@@ -10,6 +10,7 @@ import { Checkbox } from "@shiron/ui/components/ui/checkbox";
 import { GlassPanel } from "@shiron/ui/components/ui/glass-panel";
 import { Slider } from "@shiron/ui/components/ui/slider";
 import { Switch } from "@shiron/ui/components/ui/switch";
+import { themes } from "@shiron/ui/lib/themes";
 import {
 	Tabs,
 	TabsContent,
@@ -26,6 +27,28 @@ function query(root: ParentNode, selector: string): Element {
 }
 
 describe("CSS / variant integrity", () => {
+	it.each(themes)("uses $mode native controls for $name", ({ name, mode }) => {
+		const { container } = render(
+			<div data-theme={name}>
+				<input type="checkbox" />
+			</div>,
+		);
+		expect(getComputedStyle(query(container, "input")).colorScheme).toBe(mode);
+	});
+
+	it("keeps the default and legacy dark native schemes aligned with their palettes", () => {
+		expect(getComputedStyle(document.documentElement).colorScheme).toBe(
+			"light",
+		);
+		const { container } = render(
+			<div className="dark">
+				<input type="number" />
+			</div>,
+		);
+		expect(getComputedStyle(query(container, "input")).colorScheme).toBe(
+			"dark",
+		);
+	});
 	it("paints the honami gradient on a checked switch (data-checked:honami-grad)", () => {
 		const { container } = render(<Switch defaultChecked />);
 		const root = query(container, '[data-slot="switch"]');
